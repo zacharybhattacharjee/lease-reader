@@ -48,6 +48,8 @@
       "shortHeading": "Building costs",
       "legalText": "",
       "legalTextNote": "Paste two or three sentences from your copy of sec. 6B. Do not paste the whole section.",
+      "findStart": "The LESSEE shall pay to the LESSOR as additional rent",
+      "findEnd": "comply with any governmental requirement.",
       "plain": [
         "You must pay a set percentage of any increase in the building's operating costs above the base year. You pay this on top of your base rent.",
         "Operating costs include insurance, repairs, snow removal, staff pay, and some building improvements.",
@@ -64,6 +66,8 @@
       "shortHeading": "Subletting",
       "legalText": "",
       "legalTextNote": "Paste two or three sentences from your copy of sec. 13. Do not paste the whole section.",
+      "findStart": "The LESSEE shall not assign or sublet",
+      "findEnd": "covenants and conditions of this lease.",
       "plain": [
         "You must get the landlord's written consent before you sublet the space or transfer the lease to someone else.",
         "The lease does not say the landlord needs a reason to refuse.",
@@ -80,6 +84,8 @@
       "shortHeading": "Late rent and other defaults",
       "legalText": "",
       "legalTextNote": "Paste two or three sentences from your copy of sec. 19. Do not paste the whole section.",
+      "findStart": "The LESSEE shall default in the payment of any installment of rent",
+      "findEnd": "during the residue of the term.",
       "plain": [
         "When this applies: you have not paid rent 10 days after the landlord gives you written notice, or you have not fixed another broken promise in the lease 30 days after written notice.",
         "What the landlord may do: end the lease, take back the space, and remove your belongings.",
