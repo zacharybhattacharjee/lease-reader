@@ -101,25 +101,114 @@ function findClauses(clauses, leaseText) {
   return { found, notFound };
 }
 
+// ---------- Clause types and risk ranks ----------
+
+// Adds each clause's type from clause-types.json (by its "type" field),
+// and numbers the risk ranks from 1 among the clauses shown.
+function withTypes(clauses, types) {
+  const typed = clauses.map((clause) => {
+    const type = types.find((entry) => entry.type === clause.type);
+    if (!type) console.warn(`Clause ${clause.id} has type "${clause.type}", which is not in clause-types.json.`);
+    return { ...clause, typeInfo: type || null };
+  });
+  typed
+    .filter((clause) => clause.typeInfo)
+    .sort((a, b) => a.typeInfo.rank - b.typeInfo.rank)
+    .forEach((clause, index) => (clause.riskNumber = index + 1));
+  return typed;
+}
+
 // ---------- Versions ----------
 
 // One builder for each item a version can list in its "shows" list in
-// content.json. Items without a builder yet are skipped.
+// content.json. A builder returns nothing when the clause has nothing to show.
 const clauseParts = {
   heading(clause) {
     return make("h3", "clause-heading", clause.heading);
   },
 
-  legalText(clause, page) {
+  legalText(clause, content) {
     const panel = make("div", "lease-text");
     if (clause.legalText) {
       panel.append(make("p", "", clause.legalText));
     } else {
-      panel.append(make("p", "empty-excerpt", page.emptyExcerpt));
+      panel.append(make("p", "empty-excerpt", content.page.emptyExcerpt));
     }
     return panel;
   },
+
+  plain(clause) {
+    if (!clause.plain || !clause.plain.length) return null;
+    const box = make("div", "plain-language");
+    const list = make("ul", "plain-list");
+    for (const line of clause.plain) list.append(make("li", "", line));
+    box.append(list);
+    return box;
+  },
+
+  consequenceRank(clause, content) {
+    if (!clause.typeInfo) return null;
+    const consequence = content.tags.consequence;
+    const levelName = consequence.levelNames[clause.typeInfo.level];
+    const mark = make("p", "risk-mark");
+    mark.append(make("span", "risk-number", String(clause.riskNumber)), ` ${levelName}`);
+    return mark;
+  },
+
+  negotiableTag(clause, content) {
+    if (!clause.typeInfo || !clause.typeInfo.negotiable) return null;
+    return make("p", "negotiable-tag", content.tags.negotiable.label);
+  },
+
+  asks(clause, content) {
+    const type = clause.typeInfo;
+    if (!type || !type.negotiable || !type.asks || !type.asks.length) return null;
+    const box = make("div", "asks");
+    box.append(make("p", "asks-intro", content.tags.negotiable.askIntro));
+    const list = make("ul", "asks-list");
+    for (const ask of type.asks) list.append(make("li", "", ask));
+    box.append(list);
+    return box;
+  },
 };
+
+// Where each part sits on a clause. The "shows" list decides which parts
+// appear; this list decides where they go. The risk mark and the tag sit
+// together in one row under the heading.
+const MARKS = ["consequenceRank", "negotiableTag"];
+const CLAUSE_LAYOUT = ["heading", "marks", "legalText", "plain", "asks"];
+
+function renderClause(clause, version, content) {
+  const article = make("article", "clause");
+  for (const slot of CLAUSE_LAYOUT) {
+    if (slot === "marks") {
+      const marks = MARKS.filter((item) => version.shows.includes(item))
+        .map((item) => clauseParts[item](clause, content))
+        .filter(Boolean);
+      if (marks.length) {
+        const row = make("div", "marks");
+        row.append(...marks);
+        article.append(row);
+      }
+    } else if (version.shows.includes(slot)) {
+      const part = clauseParts[slot](clause, content);
+      if (part) article.append(part);
+    }
+  }
+  return article;
+}
+
+// The notes at the top of a version that lists "governsNote": the lease text
+// governs, what "you" means, and how the risk ranks count.
+function renderVersionNotes(content) {
+  const notes = make("div", "version-notes");
+  notes.append(
+    make("p", "governs-note", content.page.governsSample),
+    make("p", "", content.page.youMeans),
+    make("p", "", content.tags.consequence.scale),
+  );
+  return notes;
+}
 
 function inLeaseOrder(clauses) {
   return [...clauses].sort((a, b) => a.leaseOrder - b.leaseOrder);
@@ -136,15 +225,10 @@ function renderVersion(content, clauses, letter, number) {
   heading.id = headingId;
   section.append(heading);
 
+  if (version.shows.includes("governsNote")) section.append(renderVersionNotes(content));
+
   const list = make("div", "clause-list");
-  for (const clause of inLeaseOrder(clauses)) {
-    const article = make("article", "clause");
-    for (const item of version.shows) {
-      const build = clauseParts[item];
-      if (build) article.append(build(clause, content.page));
-    }
-    list.append(article);
-  }
+  for (const clause of inLeaseOrder(clauses)) list.append(renderClause(clause, version, content));
   section.append(list);
   return section;
 }
@@ -161,19 +245,20 @@ function renderNotFound(page, clauses) {
 
 // Until the version switcher exists (step 6), every finished version is
 // shown one after another, numbered by the default order.
-const FINISHED_VERSIONS = ["A"];
+const FINISHED_VERSIONS = ["A", "B"];
 
-function showResults(content, found, notFound) {
+function showResults(content, types, found, notFound) {
   const results = document.getElementById("results");
   const startOver = make("button", "button button-secondary", content.page.startOver);
   startOver.type = "button";
   startOver.addEventListener("click", () => showUploadScreen());
   results.replaceChildren(startOver);
 
+  const clauses = withTypes(found, types);
   const order = content.page.defaultOrder.split("");
   order.forEach((letter, index) => {
-    if (FINISHED_VERSIONS.includes(letter) && found.length) {
-      results.append(renderVersion(content, found, letter, index + 1));
+    if (FINISHED_VERSIONS.includes(letter) && clauses.length) {
+      results.append(renderVersion(content, clauses, letter, index + 1));
     }
   });
   if (notFound.length) results.append(renderNotFound(content.page, notFound));
@@ -186,7 +271,7 @@ function showResults(content, found, notFound) {
 
 // ---------- Upload screen ----------
 
-function renderUploadScreen(content) {
+function renderUploadScreen(content, types) {
   const page = content.page;
   const screen = document.getElementById("upload-screen");
 
@@ -204,7 +289,7 @@ function renderUploadScreen(content) {
 
   const sampleButton = make("button", "button button-secondary", page.sampleButton);
   sampleButton.type = "button";
-  sampleButton.addEventListener("click", () => showResults(content, content.clauses, []));
+  sampleButton.addEventListener("click", () => showResults(content, types, content.clauses, []));
 
   const status = make("p", "upload-status");
   status.id = "upload-status";
@@ -227,7 +312,7 @@ function renderUploadScreen(content) {
       if (!leaseText) throw new Error("The PDF has no text to read.");
       const { found, notFound } = findClauses(content.clauses, leaseText);
       status.textContent = "";
-      showResults(content, found, notFound);
+      showResults(content, types, found, notFound);
     } catch (problem) {
       console.error("The lease could not be read.", problem);
       status.textContent = "";
@@ -272,7 +357,7 @@ async function start() {
       loadJson("clause-types.json"),
     ]);
     renderFrame(content.page);
-    renderUploadScreen(content);
+    renderUploadScreen(content, clauseTypes.types);
   } catch (error) {
     // No error wording exists in content.json for this, so the page stays blank.
     // This usually means a typo in a JSON file, such as a missing comma.

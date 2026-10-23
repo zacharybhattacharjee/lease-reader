@@ -252,6 +252,13 @@ main {
   margin-top: 32px;
 }
 
+/* Clauses with marks and explanations are longer, so a line separates them. */
+.clause:has(.marks) + .clause {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
 .clause-heading {
   font-size: 1.1875rem;
   margin-bottom: 12px;
@@ -273,6 +280,105 @@ main {
 
 .empty-excerpt {
   color: var(--gray-text);
+}
+
+/* Notes at the top of Versions 2 and 3 */
+
+.version-notes {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  color: var(--plum-muted);
+}
+
+.governs-note {
+  color: var(--plum);
+  font-weight: 600;
+}
+
+/* Risk mark and negotiable tag. Each always shows its words, so color
+   is never the only signal. */
+
+.marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.risk-mark,
+.negotiable-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 14px 4px 4px;
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.risk-mark {
+  gap: 8px;
+  color: var(--brick);
+  border: 1.5px solid var(--brick);
+  background: var(--white);
+}
+
+.risk-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--brick);
+  color: var(--cream);
+  font-size: 0.875rem;
+}
+
+.negotiable-tag {
+  padding-left: 14px;
+  background: var(--gold);
+  color: var(--plum);
+}
+
+/* Plain language: plum text on a light slate tint, with a slate bar,
+   so it never blurs with the lease text. */
+
+.plain-language {
+  margin-top: 12px;
+  padding: 16px 20px 16px 18px;
+  background: var(--slate-tint);
+  border-left: 4px solid var(--slate);
+  border-radius: 4px var(--radius) var(--radius) 4px;
+}
+
+.plain-list,
+.asks-list {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.plain-list li + li,
+.asks-list li + li {
+  margin-top: 8px;
+}
+
+/* What to ask for */
+
+.asks {
+  margin-top: 12px;
+  padding: 16px 20px 16px 18px;
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+}
+
+.asks-intro {
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 /* Footer */
