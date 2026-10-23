@@ -8,39 +8,52 @@ Design question: How might we redesign small business contracts so that what is 
 
 This prototype tests one thing: can a small business owner tell what to push on, and what can cost them the most? It is a first draft for testing, not a product.
 
+Zachary will demo it live in class: he uploads a lease PDF, and the page shows its key clauses in the three versions. There is no AI. The page reads the PDF in the browser and finds the clauses by their wording. That only works for the Greater Boston Real Estate Board (GBREB) Standard Form Commercial Lease, or a lease that uses the same wording.
+
 Zachary is not a software developer. Explain every change in plain words, without jargon.
 
 ## Files
 
-- `content.json`: every word on the page, and the lease clauses currently shown.
-- `clause-types.json`: the risk rank, level, "why" line, and "You can ask" lines for each clause type.
+- `content.json`: every word on the page, the lease clauses, and the words used to find each clause in an uploaded PDF.
+- `clause-types.json`: the risk rank, level, "why" line, and asks for each clause type.
 - `index.html`, `style.css`, `app.js`: the page.
 - `PLAN.md`: the build plan once Zachary approves it.
 
-To show a different lease, Zachary replaces the `clauses` list in `content.json`. The page must not need any code change when that happens.
-
 ## Hosting
 
-The site runs on GitHub Pages from the main branch, root folder. Keep it a plain static site: the files above, in the root, with `index.html` as the start page. No build step, no server, no package installs.
+The site runs on GitHub Pages from the main branch, root folder. Keep it a plain static site, with `index.html` as the start page. No build step, no server, no package installs.
+
+The page uses pdf.js (Mozilla's free PDF reader) to read uploaded PDFs, loaded at an exact version. Ask before adding any other outside code.
 
 ## Rules for the build
 
 - Use plain HTML, CSS, and JavaScript. No framework.
 - No AI calls, no analytics, no cookies, no saving tester data. Observers take notes by hand.
+- An uploaded PDF never leaves the browser. The page sends it nowhere and keeps no copy. Reloading the page clears it.
+- Never commit a lease PDF to the repo. The GBREB form is copyrighted, and the repo is public.
 - Load all page text from `content.json`. Never hardcode page text.
 - Join each clause to its type in `clause-types.json` by the `type` field to get its rank, level, why, negotiable, and asks.
-- Never write, edit, or invent lease text, plain-language lines, ranks, or asks. They come only from the JSON files.
+- Never write, edit, or invent lease text, plain-language lines, ranks, or asks. They come only from the JSON files or, for lease text, from the uploaded PDF.
 - Do not change wording in the JSON files unless Zachary asks. If wording breaks a layout, report it instead of rewording it.
-- If a `legalText` field is empty, show `page.emptyExcerpt` in gray.
+- If a clause has no lease text, show `page.emptyExcerpt` in gray.
 - Ignore note fields: `status`, `source`, `legalTextNote`, `verified`, `internalName`, `lookFor`.
-- Leave out the upload screen for now. Do not build any page text that mentions uploading.
+
+## Reading an uploaded lease
+
+- Each clause in `content.json` lists the first words and last words of its excerpt, copied from the standard form.
+- The page finds those words in the PDF's text and shows everything between them as the clause's lease text, exactly as the PDF has it. When matching, it ignores line breaks, extra spaces, curly versus straight quotes, and words split with a hyphen at the end of a line.
+- Excerpts stay short, two or three sentences, because the form is copyrighted.
+- A clause whose words aren't found goes under `page.notFoundTitle` with `page.notFoundNote`. It is never guessed.
+- If the PDF has no text to read (for example, a scanned page), show `page.error`.
+- The plain-language lines, card lines, and types come from `content.json`, written for the standard form. They do not change with the uploaded lease.
+- "Use the sample lease instead" shows the clauses with the `legalText` saved in `content.json`.
 
 ## The three versions
 
 `content.json` defines them under `versions`, using the `shows` list for each.
 
 - A shows the lease text in lease order (`leaseOrder`).
-- B shows the lease text in lease order, with the plain-language lines, the "You can ask" tag and asks, and the risk rank.
+- B shows the lease text in lease order, with the plain-language lines, the negotiable tag and asks, and the risk rank.
 - C shows short cards ordered by rank, highest risk first. Tapping a card shows the plain-language lines and the lease text.
 - B and C show `page.governsSample` at the top, so no one mistakes the explanation for the lease.
 - Number risk ranks among the clauses shown, from 1, in the order of `rank` in `clause-types.json`.
@@ -57,30 +70,26 @@ The site runs on GitHub Pages from the main branch, root folder. Keep it a plain
 
 The page should feel calm, credible, and finished, like a well-designed legal aid site, not a template.
 
-- Colors: cream `#F7F3EA` background, plum `#3B2340` text, slate `#5B7083` for plain language, gold `#C9A227` for "You can ask", brick `#A63A2B` for risk.
+- Colors: cream `#F7F3EA` background, plum `#3B2340` text, slate `#5B7083` for plain language, gold `#C9A227` for the negotiable tag, brick `#A63A2B` for risk.
 - Type: a serif from Google Fonts for headings (Source Serif 4) and a clean sans for body text (Inter), each with a system fallback.
 - Lease text looks like a document: slightly smaller, set apart on a white panel. Plain-language lines sit beside or under it on a light slate tint, so the two never blur together.
 - Generous spacing. One idea per card. Soft corners and light shadows, nothing loud.
-- Color never carries meaning alone. The negotiable tag always says "You can ask". The risk mark always shows the number and level name, such as "1 Highest risk".
+- Color never carries meaning alone. The negotiable tag always shows its words from `tags.negotiable.label` (now "Ask before you sign"). The risk mark always shows the number and level name, such as "1 Highest risk".
 - Text meets WCAG AA contrast. Gold is a background only, with plum text on it.
-- Design for a phone first (375 px wide), then make sure it looks good on a laptop. Body text at least 16 px. Tap targets at least 44 px.
+- Design for a phone first (375 px wide), then make sure it looks good on a laptop, since the class demo runs on one. Body text at least 16 px. Tap targets at least 44 px.
 - Use real headings, real buttons, and `aria-expanded` on anything that opens and closes. The version switcher works with a keyboard and a screen reader.
 
 ## How to work with Zachary
 
 - Plan before writing code. Save the plan as `PLAN.md` and wait for approval.
-- Build in small steps and stop after each one so he can check it:
-  1. The page frame, colors, and type.
-  2. Version A.
-  3. Version B.
-  4. Version C.
-  5. The version switcher and the link settings.
+- Build in the small steps listed in `PLAN.md`, and stop after each one so he can check it.
 - After each step, say exactly what to look at and what changed.
 - Ask before adding anything not described here.
 
 ## Done means
 
 - All three versions show correctly on a phone and a laptop.
+- Uploading the standard form PDF fills in the lease text for every clause, in the browser used for the class demo.
 - `?order=` and `?t=` work.
 - Replacing the clauses in `content.json` changes the page with no code change.
 - It runs on GitHub Pages.

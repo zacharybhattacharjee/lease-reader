@@ -27,8 +27,8 @@
   },
   "tags": {
     "negotiable": {
-      "label": "You can ask",
-      "askIntro": "You can ask the landlord for:"
+      "label": "Ask before you sign",
+      "askIntro": "Before you sign, ask the landlord in writing for:"
     },
     "consequence": {
       "rankLabel": "Risk",
