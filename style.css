@@ -37,7 +37,7 @@ body {
   background: var(--cream);
   color: var(--plum);
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: 1.0625rem; /* 17 px, so lease text can be a little smaller and still 16 px */
   line-height: 1.6;
 }
 
@@ -124,6 +124,49 @@ main {
   padding-bottom: 48px;
 }
 
+/* Versions */
+
+.version {
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
+.version + .version {
+  margin-top: 56px;
+}
+
+.version-heading {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.clause + .clause {
+  margin-top: 32px;
+}
+
+.clause-heading {
+  font-size: 1.1875rem;
+  margin-bottom: 12px;
+}
+
+/* Lease text: set apart on a white panel, like a page of the document,
+   and a little smaller than the body text. */
+
+.lease-text {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.empty-excerpt {
+  color: var(--gray-text);
+}
+
 /* Footer */
 
 .site-footer {
@@ -150,5 +193,9 @@ main {
 
   .intro {
     font-size: 1.25rem;
+  }
+
+  .lease-text {
+    padding: 28px 32px;
   }
 }
