@@ -2,7 +2,8 @@
   "status": "Draft. The clauses below are the sample lease, used for the demo and as a backup if the AI step fails. Zachary pastes the legalText excerpts and checks every plain-language line.",
   "source": "Greater Boston Real Estate Board Standard Form Commercial Lease. Short excerpts only.",
   "page": {
-    "title": "Three Ways to Read a Lease",
+    "appName": "Clause & Effect",
+    "title": "What can I ask?",
     "intro": "These are three ways to show the same part of a commercial lease. Look at each one.",
     "versionLabel": "Version",
     "defaultOrder": "ABC",

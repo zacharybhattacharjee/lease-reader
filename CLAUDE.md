@@ -1,8 +1,8 @@
-# Lease reader prototype
+# Clause & Effect (lease reader prototype)
 
 ## What this is
 
-A clickable prototype for a Northeastern Law legal design studio. It shows the key clauses of a commercial lease in three versions so testers can compare them.
+Clause & Effect is a clickable prototype for a Northeastern Law legal design studio. It shows the key clauses of a commercial lease in three versions so testers can compare them.
 
 Design question: How might we redesign small business contracts so that what is negotiable and what is consequential are visible in the document that legally binds?
 
