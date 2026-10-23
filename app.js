@@ -170,13 +170,69 @@ const clauseParts = {
     box.append(list);
     return box;
   },
+
+  shortHeading(clause) {
+    return make("h3", "clause-heading", clause.shortHeading);
+  },
+
+  cardLine(clause) {
+    return clause.cardLine ? make("p", "card-line", clause.cardLine) : null;
+  },
+
+  consequenceWhy(clause) {
+    return clause.typeInfo && clause.typeInfo.why ? make("p", "why", clause.typeInfo.why) : null;
+  },
+
+  // A button that opens and closes the plain-language lines and the lease text.
+  // It uses page.showDetails and page.hideDetails if they exist, and
+  // page.showLeaseText and page.hideLeaseText until then.
+  plainAndLegalTextOnTap(clause, content) {
+    const page = content.page;
+    const showWords = page.showDetails || page.showLeaseText;
+    const hideWords = page.hideDetails || page.hideLeaseText;
+
+    const details = make("div", "card-details");
+    details.id = `details-${++detailsCount}`;
+    details.hidden = true;
+    const plain = clauseParts.plain(clause, content);
+    if (plain) details.append(plain);
+    details.append(clauseParts.legalText(clause, content));
+
+    const button = make("button", "button button-secondary details-button", showWords);
+    button.type = "button";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", details.id);
+    button.addEventListener("click", () => {
+      const opening = details.hidden;
+      details.hidden = !opening;
+      button.setAttribute("aria-expanded", String(opening));
+      button.textContent = opening ? hideWords : showWords;
+    });
+
+    const wrapper = make("div", "card-toggle");
+    wrapper.append(button, details);
+    return wrapper;
+  },
 };
+
+// Gives each opening panel its own id, so its button can point to it.
+let detailsCount = 0;
 
 // Where each part sits on a clause. The "shows" list decides which parts
 // appear; this list decides where they go. The risk mark and the tag sit
 // together in one row under the heading.
 const MARKS = ["consequenceRank", "negotiableTag"];
-const CLAUSE_LAYOUT = ["heading", "marks", "legalText", "plain", "asks"];
+const CLAUSE_LAYOUT = [
+  "heading",
+  "shortHeading",
+  "marks",
+  "cardLine",
+  "consequenceWhy",
+  "legalText",
+  "plain",
+  "asks",
+  "plainAndLegalTextOnTap",
+];
 
 function renderClause(clause, version, content) {
   const article = make("article", "clause");
@@ -214,6 +270,12 @@ function inLeaseOrder(clauses) {
   return [...clauses].sort((a, b) => a.leaseOrder - b.leaseOrder);
 }
 
+// Highest risk first. A clause with no known type goes last.
+function inRankOrder(clauses) {
+  const rankOf = (clause) => clause.riskNumber ?? Infinity;
+  return inLeaseOrder(clauses).sort((a, b) => rankOf(a) - rankOf(b));
+}
+
 function renderVersion(content, clauses, letter, number) {
   const version = content.versions[letter];
   const headingId = `version-${number}-heading`;
@@ -227,8 +289,11 @@ function renderVersion(content, clauses, letter, number) {
 
   if (version.shows.includes("governsNote")) section.append(renderVersionNotes(content));
 
-  const list = make("div", "clause-list");
-  for (const clause of inLeaseOrder(clauses)) list.append(renderClause(clause, version, content));
+  const byRank = version.order === "rank";
+  const list = make("div", byRank ? "clause-list card-list" : "clause-list");
+  for (const clause of byRank ? inRankOrder(clauses) : inLeaseOrder(clauses)) {
+    list.append(renderClause(clause, version, content));
+  }
   section.append(list);
   return section;
 }
@@ -245,7 +310,7 @@ function renderNotFound(page, clauses) {
 
 // Until the version switcher exists (step 6), every finished version is
 // shown one after another, numbered by the default order.
-const FINISHED_VERSIONS = ["A", "B"];
+const FINISHED_VERSIONS = ["A", "B", "C"];
 
 function showResults(content, types, found, notFound) {
   const results = document.getElementById("results");

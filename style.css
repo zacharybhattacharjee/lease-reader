@@ -282,6 +282,56 @@ main {
   color: var(--gray-text);
 }
 
+/* Version 3 cards: one short card per clause, highest risk first. */
+
+.card-list > .clause {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.card-list > .clause + .clause {
+  margin-top: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+}
+
+.card-list .clause-heading {
+  font-size: 1.375rem;
+  margin-bottom: 10px;
+}
+
+.card-line {
+  margin-top: 4px;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.why {
+  margin-top: 8px;
+  color: var(--plum-muted);
+}
+
+.card-toggle {
+  margin-top: 16px;
+}
+
+.details-button {
+  width: 100%;
+}
+
+.card-details .plain-language {
+  margin-top: 16px;
+}
+
+/* Inside a white card, the lease text keeps its border but drops the shadow. */
+.card-details .lease-text {
+  margin-top: 12px;
+  box-shadow: none;
+}
+
 /* Notes at the top of Versions 2 and 3 */
 
 .version-notes {
@@ -415,6 +465,15 @@ main {
 
   .upload-card {
     padding: 36px 40px;
+  }
+
+  .card-list > .clause,
+  .card-list > .clause + .clause {
+    padding: 28px 32px;
+  }
+
+  .details-button {
+    width: auto;
   }
 
   .upload-buttons {
