@@ -1,0 +1,131 @@
+{
+  "status": "Draft. The clauses below are the sample lease, used for the demo and as a backup if the AI step fails. Zachary pastes the legalText excerpts and checks every plain-language line.",
+  "source": "Greater Boston Real Estate Board Standard Form Commercial Lease. Short excerpts only.",
+  "page": {
+    "title": "Three Ways to Read a Lease",
+    "intro": "These are three ways to show the same part of a commercial lease. Look at each one.",
+    "versionLabel": "Version",
+    "defaultOrder": "ABC",
+    "youMeans": "In these explanations, \"you\" means the tenant: the business renting the space.",
+    "governs": "An AI wrote these explanations to help you read the lease. Check each one against the lease text. The lease text governs.",
+    "showLeaseText": "Show the lease text",
+    "hideLeaseText": "Hide the lease text",
+    "emptyExcerpt": "[Lease excerpt goes here]",
+    "footer": "Prototype for a Northeastern University School of Law class. Not legal advice.",
+    "uploadTitle": "Upload Your Lease",
+    "uploadIntro": "Upload a commercial lease as a PDF. The tool finds the key clauses and shows them three ways.",
+    "uploadButton": "Choose a lease",
+    "privacyNote": "Your lease is sent to Anthropic's AI service to be read. This tool does not keep a copy.",
+    "sampleButton": "Use the sample lease instead",
+    "reading": "Reading your lease. This can take a minute.",
+    "governsSample": "The plain-language explanations help you read the lease. The lease text governs.",
+    "notFoundTitle": "Not found in this lease",
+    "notFoundNote": "The tool did not find these clauses. The lease may not have them, or the tool may have missed them.",
+    "excerptWarning": "Check this one. The quoted text did not match the lease word for word.",
+    "error": "The tool could not read this lease. Try a PDF where you can select the text, or try again.",
+    "startOver": "Upload a different lease"
+  },
+  "tags": {
+    "negotiable": {
+      "label": "You can ask",
+      "askIntro": "You can ask the landlord for:"
+    },
+    "consequence": {
+      "rankLabel": "Risk",
+      "levelNames": {
+        "highest": "Highest risk",
+        "high": "High risk",
+        "moderate": "Moderate risk"
+      },
+      "scale": "Ranked from 1, the clause that can cost you the most."
+    }
+  },
+  "clauses": [
+    {
+      "id": "6B",
+      "leaseOrder": 1,
+      "heading": "6B. Operating Cost Escalation",
+      "shortHeading": "Building costs",
+      "legalText": "",
+      "legalTextNote": "Paste two or three sentences from your copy of sec. 6B. Do not paste the whole section.",
+      "plain": [
+        "You must pay a set percentage of any increase in the building's operating costs above the base year. You pay this on top of your base rent.",
+        "Operating costs include insurance, repairs, snow removal, staff pay, and some building improvements.",
+        "The lease sets no limit on how much this amount can rise."
+      ],
+      "cardLine": "Your rent can rise when building costs rise.",
+      "verified": false,
+      "type": "operating_costs"
+    },
+    {
+      "id": "13",
+      "leaseOrder": 2,
+      "heading": "13. Assignment - Subleasing",
+      "shortHeading": "Subletting",
+      "legalText": "",
+      "legalTextNote": "Paste two or three sentences from your copy of sec. 13. Do not paste the whole section.",
+      "plain": [
+        "You must get the landlord's written consent before you sublet the space or transfer the lease to someone else.",
+        "The lease does not say the landlord needs a reason to refuse.",
+        "If the landlord consents, you must still pay all the rent and keep every other promise in the lease."
+      ],
+      "cardLine": "If you sublet, you still owe all the rent.",
+      "verified": false,
+      "type": "subletting"
+    },
+    {
+      "id": "19",
+      "leaseOrder": 3,
+      "heading": "19. Default and Bankruptcy",
+      "shortHeading": "Late rent and other defaults",
+      "legalText": "",
+      "legalTextNote": "Paste two or three sentences from your copy of sec. 19. Do not paste the whole section.",
+      "plain": [
+        "When this applies: you have not paid rent 10 days after the landlord gives you written notice, or you have not fixed another broken promise in the lease 30 days after written notice.",
+        "What the landlord may do: end the lease, take back the space, and remove your belongings.",
+        "What you must still pay: the rent the landlord loses for the rest of the lease term, and the landlord's cost of fixing the problem, including lawyer's fees, plus interest.",
+        "This section also covers bankruptcy. Read sec. 19 for those terms."
+      ],
+      "cardLine": "Late rent can cost you the space, and you still owe the rent.",
+      "verified": false,
+      "type": "default"
+    }
+  ],
+  "versions": {
+    "A": {
+      "internalName": "As written",
+      "order": "lease",
+      "shows": [
+        "heading",
+        "legalText"
+      ]
+    },
+    "B": {
+      "internalName": "Plain language and marks",
+      "order": "lease",
+      "shows": [
+        "heading",
+        "legalText",
+        "plain",
+        "negotiableTag",
+        "asks",
+        "consequenceRank",
+        "governsNote"
+      ]
+    },
+    "C": {
+      "internalName": "Most serious first",
+      "order": "rank",
+      "shows": [
+        "shortHeading",
+        "cardLine",
+        "consequenceRank",
+        "consequenceWhy",
+        "negotiableTag",
+        "asks",
+        "plainAndLegalTextOnTap",
+        "governsNote"
+      ]
+    }
+  }
+}

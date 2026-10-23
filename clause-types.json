@@ -1,0 +1,65 @@
+{
+  "status": "Draft. Rankings are Zachary's judgment. Every ask is a draft for Darryl to check. The AI never writes asks or ranks; they come only from this file.",
+  "types": [
+    {
+      "type": "default",
+      "name": "Late rent and other defaults",
+      "lookFor": "What happens if the tenant pays late or breaks another promise: notice periods, the landlord ending the lease, retaking the space, and what the tenant still owes afterward.",
+      "rank": 1,
+      "level": "highest",
+      "why": "You can lose the space and still owe money.",
+      "negotiable": true,
+      "asks": ["More days to pay or fix a problem after the landlord's notice."]
+    },
+    {
+      "type": "guaranty",
+      "name": "Personal guaranty",
+      "lookFor": "Any promise by the owner or another person to pay the tenant's obligations personally.",
+      "rank": 2,
+      "level": "highest",
+      "why": "You can owe the business's rent from your own money.",
+      "negotiable": true,
+      "asks": ["A limit on the guaranty, such as a set number of months of rent.", "An end date for the guaranty."]
+    },
+    {
+      "type": "subletting",
+      "name": "Subletting and transfer",
+      "lookFor": "Rules for subletting the space or assigning the lease, including the landlord's consent and whether the tenant stays liable.",
+      "rank": 3,
+      "level": "high",
+      "why": "You can leave the space and still owe rent for the rest of the lease.",
+      "negotiable": true,
+      "asks": ["A rule that the landlord cannot refuse consent without a good reason.", "Release from the rent once the landlord approves a new tenant."]
+    },
+    {
+      "type": "operating_costs",
+      "name": "Building costs",
+      "lookFor": "Extra rent for the tenant's share of building operating costs, common area charges, or increases over a base year.",
+      "rank": 4,
+      "level": "moderate",
+      "why": "Your total rent can go up, sometimes with no limit.",
+      "negotiable": true,
+      "asks": ["A yearly limit on how much your share can rise.", "Leaving building improvements out of operating costs."]
+    },
+    {
+      "type": "taxes",
+      "name": "Property tax increases",
+      "lookFor": "Extra rent for the tenant's share of real estate taxes or tax increases over a base year.",
+      "rank": 5,
+      "level": "moderate",
+      "why": "Your rent can rise when the landlord's taxes rise.",
+      "negotiable": true,
+      "asks": ["A limit on how much your share of tax increases can rise each year."]
+    },
+    {
+      "type": "condition",
+      "name": "Condition of the space",
+      "lookFor": "Whether the tenant takes the space as is, and who must fix problems that exist at move-in.",
+      "rank": 6,
+      "level": "moderate",
+      "why": "You may have to pay to fix problems that were there before you moved in.",
+      "negotiable": true,
+      "asks": ["A promise that heating, plumbing, and electrical systems work on move-in day."]
+    }
+  ]
+}
