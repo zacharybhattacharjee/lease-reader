@@ -211,6 +211,58 @@ main {
   margin-bottom: 32px;
 }
 
+/* Version switcher: stays at the top of the screen while scrolling. */
+
+.version-switcher {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  margin: 0 -16px 8px;
+  padding: 12px 16px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.switch-button {
+  flex: 1;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 2px solid var(--plum);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--plum);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch-button[aria-pressed="true"] {
+  background: var(--plum);
+  color: var(--cream);
+}
+
+.switch-button:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 3px;
+}
+
+.version-switcher ~ .version {
+  padding-top: 24px;
+  border-top: none;
+}
+
+.version-heading:focus {
+  outline: none;
+}
+
+.version-heading:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 4px;
+}
+
 /* Not found */
 
 .not-found {
@@ -440,6 +492,12 @@ main {
   color: var(--plum-muted);
 }
 
+.tester-code:not(:empty) {
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+
 /* Laptop and wider */
 
 @media (min-width: 768px) {
@@ -474,6 +532,16 @@ main {
 
   .details-button {
     width: auto;
+  }
+
+  .version-switcher {
+    margin: 0 -32px 8px;
+    padding: 14px 32px;
+  }
+
+  .switch-button {
+    flex: 0 1 auto;
+    padding: 8px 22px;
   }
 
   .upload-buttons {

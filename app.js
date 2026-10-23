@@ -45,6 +45,7 @@ function renderFrame(page) {
   setText("title", page.title);
   setText("intro", page.intro);
   setText("footer-note", page.footer);
+  setText("tester-code", testerCode());
 }
 
 // ---------- Reading the PDF ----------
@@ -281,10 +282,12 @@ function renderVersion(content, clauses, letter, number) {
   const headingId = `version-${number}-heading`;
 
   const section = make("section", "version");
+  section.id = `version-${number}`;
   section.setAttribute("aria-labelledby", headingId);
 
   const heading = make("h2", "version-heading", `${content.page.versionLabel} ${number}`);
   heading.id = headingId;
+  heading.tabIndex = -1; // so switching versions can move focus here
   section.append(heading);
 
   if (version.shows.includes("governsNote")) section.append(renderVersionNotes(content));
@@ -308,9 +311,24 @@ function renderNotFound(page, clauses) {
   return section;
 }
 
-// Until the version switcher exists (step 6), every finished version is
-// shown one after another, numbered by the default order.
-const FINISHED_VERSIONS = ["A", "B", "C"];
+// ---------- Link settings ----------
+
+// ?order= sets which version is 1, 2 and 3, for example ?order=CAB.
+// It must use A, B and C once each. Anything else falls back to the default.
+function versionOrder(defaultOrder) {
+  const asked = (new URLSearchParams(location.search).get("order") || "").toUpperCase();
+  const valid = asked.length === 3 && [...asked].sort().join("") === "ABC";
+  return (valid ? asked : defaultOrder).split("");
+}
+
+// ?t= carries a short tester code, such as ?t=R1. Only letters, numbers,
+// dashes and underscores are kept, up to 12 characters.
+function testerCode() {
+  const asked = new URLSearchParams(location.search).get("t") || "";
+  return asked.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 12);
+}
+
+// ---------- Results and the version switcher ----------
 
 function showResults(content, types, found, notFound) {
   const results = document.getElementById("results");
@@ -320,12 +338,32 @@ function showResults(content, types, found, notFound) {
   results.replaceChildren(startOver);
 
   const clauses = withTypes(found, types);
-  const order = content.page.defaultOrder.split("");
-  order.forEach((letter, index) => {
-    if (FINISHED_VERSIONS.includes(letter) && clauses.length) {
-      results.append(renderVersion(content, clauses, letter, index + 1));
+  if (clauses.length) {
+    const sections = versionOrder(content.page.defaultOrder).map((letter, index) =>
+      renderVersion(content, clauses, letter, index + 1),
+    );
+
+    const switcher = make("div", "version-switcher");
+    const buttons = sections.map((section, index) => {
+      const button = make("button", "switch-button", `${content.page.versionLabel} ${index + 1}`);
+      button.type = "button";
+      button.setAttribute("aria-controls", section.id);
+      button.addEventListener("click", () => showVersion(index, true));
+      return button;
+    });
+    switcher.append(...buttons);
+
+    // Shows one version, hides the others, and scrolls back to the top.
+    function showVersion(chosen, moveFocus) {
+      sections.forEach((section, index) => (section.hidden = index !== chosen));
+      buttons.forEach((button, index) => button.setAttribute("aria-pressed", String(index === chosen)));
+      window.scrollTo(0, 0);
+      if (moveFocus) sections[chosen].querySelector(".version-heading").focus({ preventScroll: true });
     }
-  });
+
+    results.append(switcher, ...sections);
+    showVersion(0, false);
+  }
   if (notFound.length) results.append(renderNotFound(content.page, notFound));
 
   document.getElementById("upload-screen").hidden = true;
