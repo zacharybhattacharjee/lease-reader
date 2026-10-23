@@ -124,6 +124,114 @@ main {
   padding-bottom: 48px;
 }
 
+/* Buttons */
+
+.button {
+  min-height: 48px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  border: 2px solid var(--plum);
+}
+
+.button-primary {
+  background: var(--plum);
+  color: var(--cream);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--plum);
+}
+
+.button:hover {
+  box-shadow: var(--shadow);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Upload screen */
+
+.upload-card {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 20px;
+}
+
+.upload-title {
+  font-size: 1.5rem;
+}
+
+.upload-intro {
+  margin-top: 8px;
+}
+
+.upload-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.upload-status:not(:empty),
+.upload-error:not(:empty) {
+  margin-top: 16px;
+}
+
+.upload-error {
+  color: var(--brick);
+  font-weight: 500;
+}
+
+/* Results */
+
+.results > .button {
+  margin-bottom: 32px;
+}
+
+/* Not found */
+
+.not-found {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
+.not-found-title {
+  font-size: 1.5rem;
+}
+
+.not-found-note {
+  margin-top: 8px;
+}
+
+.not-found-list {
+  margin: 16px 0 0;
+  padding-left: 1.25em;
+}
+
 /* Versions */
 
 .version {
@@ -197,5 +305,14 @@ main {
 
   .lease-text {
     padding: 28px 32px;
+  }
+
+  .upload-card {
+    padding: 36px 40px;
+  }
+
+  .upload-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }

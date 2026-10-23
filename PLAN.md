@@ -75,32 +75,34 @@ I check every step at phone width and laptop width before handing it to you.
 - **What I build:** each clause's heading and lease text, in lease order, on a white panel that looks like a document. This uses the sample content for now. Clauses with no lease text show `[Lease excerpt goes here]` in gray.
 - **What you check:** it reads like the lease itself.
 
-### Step 3: Version B (plain language and marks)
+### Step 3: Upload screen and reading the PDF
+
+This is how the demo starts: upload the lease, and Version 1 shows its clauses as written.
+
+- **What I build:** the upload screen, the reading message, filling the lease text from your PDF, the "Not found" list, the error message, the start-over button, and the sample-lease button.
+- **What you check:**
+  - Upload your standard form PDF and confirm each box in Version 1 shows the right clause text.
+  - Try a PDF that isn't the form, and a scanned PDF if you have one.
+
+### Step 4: Version 2 (B, plain language and marks)
 
 - **What I build:** the clauses in lease order, with plain-language lines, the risk mark (for example "1 Highest risk"), the "Ask before you sign" tag, the asks, and the notes from question 9.
 - **What you check:** you can tell at a glance what to push on and what costs the most.
 
-### Step 4: Version C (most serious first)
+### Step 5: Version 3 (C, most serious first)
 
 - **What I build:** short cards ordered by risk, each with its short heading, card line, risk mark, "why" line, tag and asks. A button opens the plain-language lines and lease text.
 - **What you check:** the order makes sense, and opening and closing a card feels clear.
 
-**Until step 5,** the page stacks the finished versions one after another, so you can compare them.
+**Until step 6,** the page stacks the finished versions one after another, so you can compare them.
 
-### Step 5: Version switcher and link settings
+### Step 6: Version switcher and link settings
 
 - **What I build:**
   - The three "Version" buttons. One version shows at a time, and switching scrolls to the top.
   - `?order=`, for example `?order=CAB`. Bad values fall back to "ABC".
   - `?t=`, a short tester code shown in the footer.
 - **What you check:** try `?order=CAB&t=R1` and `?order=XYZ`, and switch versions using only the keyboard (Tab, then Enter).
-
-### Step 6: Upload screen and reading the PDF
-
-- **What I build:** the upload screen, the reading message, filling the lease text from your PDF, the "Not found" list, the error message, the start-over button, and the sample-lease button.
-- **What you check:**
-  - Upload your standard form PDF and confirm every excerpt is right.
-  - Try a PDF that isn't the form, and a scanned PDF if you have one.
 
 ### Step 7: Put it on GitHub Pages and rehearse the demo
 
@@ -115,3 +117,7 @@ I check every step at phone width and laptop width before handing it to you.
 - No tester names anywhere, including commit messages.
 - It won't understand leases that use different wording. It finds only the clauses written the way the standard form writes them.
 - No changes to wording in the JSON files unless you ask.
+
+## Possible later
+
+- A view of the whole uploaded lease, with the key clauses highlighted on the real pages. Not planned yet.
