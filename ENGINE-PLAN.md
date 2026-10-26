@@ -2,7 +2,7 @@
 
 Status: draft for Zachary to review. Nothing in this plan is built. The questions are at the end.
 
-Version 4 (10/26). This version uses the second workbook (with the Asks sheet), the updated `RESEARCH-BRIEF.md`, and both rounds of your answers, recorded in "Decisions" below. Your third workbook has split ask columns and a new approval rule. It hasn't reached me yet, so I'll check it when you send it.
+Version 4 (10/26). This version uses the second workbook (with the Asks sheet), the updated `RESEARCH-BRIEF.md`, and both rounds of your answers, recorded in "Decisions" below. I've also checked the third workbook and brief (see "What I checked").
 
 ## What the engine does
 
@@ -171,12 +171,22 @@ This is the chain from the brief, built from the Asks sheet:
   
   I'll add matching rules for these. You don't need to change the workbook.
 
+### The third workbook
+
+Only the Warning phrases sheet, the "How to use" sheet and one line of the brief changed. Everything else matches the second workbook, so the problems listed under it still stand.
+
+- **The two ask columns work.** Each risky phrase with an ask now has a plain ask and, mostly, legal wording. The converter can tell them apart without guessing.
+- **"18 risky phrases, 14 with asks."** You said all 14 risky phrases are filled. The sheet has 18 marked Risky. Four have no ask at all: "jointly and severally", "personally", "at Tenant's sole cost and expense" and "irrevocable". "Hereby waives" has a plain ask but no legal wording, which is fine: the card just won't have a "Words to propose" part (question 7).
+- **Some legal wording is a fragment,** such as "not be unreasonably withheld, conditioned, or delayed" and "without carry-forward of any unused amount". That works if the page presents it as replacement words, not a whole sentence. The caution line already says to read the final version.
+- **The two release wordings still differ.** "Remain primarily liable" proposes a release with no date limit. The Asks sheet's `transfer-tenant-stays-liable` releases only "obligations arising after the date of the assignment".
+- **The approval rule** ("a row can't be Approved until its tier is set") is in the brief and the "How to use" sheet. The converter will enforce it (question 4).
+
 ### Problems found in the second workbook
 
 Resolved by your second-round answers:
 - The 15 dataset quotes stay, with credit (decision 12).
 - Proof examples get a caution line (decision 13).
-- "Ask for instead" is split into two columns (decision 14). I'll check the new columns when the third workbook arrives.
+- "Ask for instead" is split into two columns (decision 14).
 - Middle versions: anything with an Asks row is a flag (decision 17).
 
 Still open:
@@ -371,17 +381,18 @@ From the brief. I won't build any of these until you choose:
 4. **A tier from the version or from its clause type?** "A row can't be Approved until its tier is set": does a version count as having a tier when only its clause type has one? Suggestion: yes. A version uses its own tier if it has one, and otherwise its clause type's. The converter reports any Approved version with neither, and treats it as a draft.
 5. **The tier of an unsure card.** It shows two possible types, maybe with different tiers. Suggestion: place it by the more serious of the two, like decision 19.
 6. **A section with a flag and a "Good for you".** For example, a friendly cure period, then "provided, however" taking it back. Suggestion: the card is a flag, its versions are listed most serious first, and the "Good for you" version shows inside it with its marker.
+7. **The 4 risky warning phrases with no ask:** "jointly and severally", "personally", "at Tenant's sole cost and expense" and "irrevocable". Suggestion: they still show their meaning wherever they appear, but they aren't flags (decision 17), until you add an ask. Is that right, or did you mean to fill them?
 
 ### Still open from before
 
-7. **"Left blank" sentences** for empty form blanks. Add a column on the Versions sheet, or one shared line in `content.json`?
-8. **Should your 23 word meanings from step 9c go into the Glossary sheet,** so there's one glossary?
-9. **Test tool timing.** A basic test tool in stage 1 would record sorting before I tune anything. Or keep it all in stage 4?
-10. **The two outside files.** The page loads pdf.js from cdnjs and the fonts from Google. They never see the lease. Copy them into the repo so the page uses no outside sites at all?
-11. **The sample lease button.** Keep today's 3 sample clauses, or retire it once uploads work well?
-12. **The legal-wording notes** in "What I checked" (Base Year, the unamortized period, a capital-cost fallback, the estimate, the bracket style, and the two release wordings). Will you change them in the workbook, or should I list exact suggestions for you to paste?
-13. **The 4 broken EDGAR links,** including Sensus, a proof example. Will you fix them, or should I list the working links?
+8. **"Left blank" sentences** for empty form blanks. Add a column on the Versions sheet, or one shared line in `content.json`?
+9. **Should your 23 word meanings from step 9c go into the Glossary sheet,** so there's one glossary?
+10. **Test tool timing.** A basic test tool in stage 1 would record sorting before I tune anything. Or keep it all in stage 4?
+11. **The two outside files.** The page loads pdf.js from cdnjs and the fonts from Google. They never see the lease. Copy them into the repo so the page uses no outside sites at all?
+12. **The sample lease button.** Keep today's 3 sample clauses, or retire it once uploads work well?
+13. **The legal-wording notes** in "What I checked" (Base Year, the unamortized period, a capital-cost fallback, the estimate, the bracket style, and the two release wordings). Will you change them in the workbook, or should I list exact suggestions for you to paste?
+14. **The 4 broken EDGAR links,** including Sensus, a proof example. Will you fix them, or should I list the working links?
 
 ### Before stage 1 starts
 
-Please send the third workbook, the one with the split ask columns and the approval rule. Questions 1 and 2 decide how the cards fit into the versions, so I'd want those answered before building. The rest can wait.
+Questions 1 and 2 decide how the cards fit into the versions, so I'd want those answered before building. The rest can wait.
