@@ -43,21 +43,21 @@ These are your rules from the request. Each is built into the plan as described 
 
 ## Files
 
-The library is what Darryl reviews. The code is what I write. They stay apart.
+The library holds every sentence an owner reads. The code is what I write. They stay apart.
 
 | File | What's in it | Who writes it |
 | --- | --- | --- |
-| `library/clause-types.json` | Today's `clause-types.json`, moved, plus new types. Each type gets trigger phrases that identify it. | Ranks: you. Asks: Darryl reviews. Triggers: me, you check. |
-| `library/versions.json` | For each type, the common ways it's written. Each version has cue phrases, a plain-language sentence, and (stage 2) a sentence with blanks for numbers. | Sentences: drafted in `DRAFT-WORDING.md`, then reviewed. Cues: me. |
-| `library/glossary.json` | Legal words and phrases and their meanings. Starts with the 23 from step 9c. | Drafted, then reviewed. |
-| `library/warnings.json` | Warning phrases, what each one means for the owner, and how it changes the risk mark. | Drafted, then reviewed. |
-| `library/missing.json` | What to say when the lease seems to have no section of a type, such as no cure period. | Drafted, then reviewed. |
+| `library/clause-types.json` | Today's `clause-types.json`, moved, plus new types. Each type gets trigger phrases that identify it. | Ranks: you. Asks: drafted, you approve. Triggers: me, you check. |
+| `library/versions.json` | For each type, the common ways it's written. Each version has cue phrases, a plain-language sentence, and (stage 2) a sentence with blanks for numbers. | Sentences: drafted in `DRAFT-WORDING.md`, you approve. Cues: me. |
+| `library/glossary.json` | Legal words and phrases and their meanings. Starts with the 23 from step 9c. | Drafted, you approve. |
+| `library/warnings.json` | Warning phrases, what each one means for the owner, and how it changes the risk mark. | Drafted, you approve. |
+| `library/missing.json` | What to say when the lease seems to have no section of a type, such as no cure period. | Drafted, you approve. |
 | `content.json` | Page wording, as today. The 3 sample clauses stay for "Use the sample lease instead". | You. |
 | `engine.js` | The engine: read, split, sort, pick, fill, flag. | Me. |
 | `app.js` | Draws the page, as today. | Me. |
 | `test.html`, `test.js` | The test tool (stage 4). Not linked from the main page. | Me. |
 
-JSON files are readable, but they're still code-shaped. Question 2 asks whether Darryl should get a plain review page instead.
+JSON files are readable, but they're still code-shaped. Question 2 asks whether you want a plain review page instead.
 
 ## How sorting decides (plain version)
 
@@ -71,7 +71,7 @@ JSON files are readable, but they're still code-shaped. Question 2 asks whether 
 
 ## The stages
 
-I stop after each stage so you can check it. Before each stage, I put that stage's new sentences in `DRAFT-WORDING.md` for you and Darryl. I build after you approve them.
+I stop after each stage so you can check it. Before each stage, I put that stage's new sentences in `DRAFT-WORDING.md` for you. I build after you approve them.
 
 ### Stage 1: More clauses, each with a few versions
 
@@ -141,7 +141,7 @@ I stop after each stage so you can check it. Before each stage, I put that stage
 ## Questions for you
 
 1. **Two outside files.** The page loads pdf.js from cdnjs and the fonts from Google Fonts. Neither ever sees the lease, but each visitor's browser contacts both sites. To follow "no outside services" strictly, I'd copy both into the repo (pdf.js is free to copy). Do you want that?
-2. **A review page for Darryl.** Should I build `review.html`, a plain page listing every sentence in the library by clause type, so Darryl never opens a JSON file? It adds a page, and its look is your call.
+2. **A review page.** Should I build `review.html`, a plain page listing every sentence in the library by clause type, so you can check them without opening a JSON file? It adds a page, and its look is your call.
 3. **Test leases.** Please put your other commercial leases, such as the Egleston lease, in `.test-pdfs` (git ignores it, so they're never committed). How many can you get? Three or four commercial leases is the minimum for a fair score.
 4. **The unseen lease.** Which lease should I never look at while writing rules, so its score is a fair test?
 5. **Which clauses first.** Today's types cover 6A, 6B, 13, 19 and 23, plus a personal guaranty, which the form doesn't have but riders often add. My suggested first batch from the form:

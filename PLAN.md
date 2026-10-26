@@ -218,7 +218,7 @@ Your notes asked for six things. I've sorted them by size, smallest first.
 
 ## Possible later
 
-- **After testing: a bigger clause library (decided 10/26, not planned in detail yet).** You want more than three clauses, and more than one lease form. The idea: a library of common versions of each clause, written ahead of time and reviewed by Darryl. The page sorts each part of the lease into the library by its wording, and fills the lease's own numbers into the plain-language lines. The stages:
+- **After testing: a bigger clause library (decided 10/26, not planned in detail yet).** You want more than three clauses, and more than one lease form. The idea: a library of common versions of each clause, written ahead of time and approved by you. The page sorts each part of the lease into the library by its wording, and fills the lease's own numbers into the plain-language lines. The stages:
   1. More clauses from the GBREB form.
   2. Fill in the lease's own numbers.
   3. Warning phrases and word meanings across the whole lease.
