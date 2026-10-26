@@ -67,6 +67,13 @@ The engine never writes a sentence. It only chooses sentences from the library, 
     - "Tier not set" sections go after tier 3 and before "not sorted", in preview only.
 19. **Mixed tiers.** A section goes in its most serious tier. Inside the card, its matched versions are listed most serious first.
 
+**Third round (10/26):**
+
+20. **Which versions get the cards:**
+    - Versions 2 and 3 use the card layout from decision 16. Version 2 lists the cards in lease order, and Version 3 in tier order.
+    - Version 1 stays the lease as written, with no flags, tiers or asks.
+21. **The "What to ask" heading replaces the "Ask before you sign" tag.** The gold tag (`tags.negotiable.label`) no longer shows on Versions 2 and 3.
+
 ## The rules
 
 From your engine request and from `RESEARCH-BRIEF.md`:
@@ -349,9 +356,11 @@ From the brief. I won't build any of these until you choose:
   - the converter
   - preview mode, since drafts can now appear on the page, marked "Draft"
   - tiers in place of ranks
+  - the three versions: Versions 2 and 3 become cards. Today `CLAUDE.md` says the negotiable tag always shows "Ask before you sign"; that rule changes to the "What to ask" heading.
 
   I'll show you the new wording first.
 - **Today's 3 clauses and their risk marks** ("1 Highest risk") move to tier marks in words (decision 18).
+- **Unused page wording.** With decision 21, `tags.negotiable.label` ("Ask before you sign") and `tags.negotiable.askIntro` ("Before you sign, ask the landlord in writing for:") are no longer used. I'll leave them in `content.json` unless you want them removed.
 - **New page wording in `content.json`.** You wrote all of these yourself in your answers, so none of them needs a draft:
   - the three tier names, and "Tier not set"
   - "Good for you"
@@ -371,28 +380,22 @@ From the brief. I won't build any of these until you choose:
 
 ### New, from your second-round answers
 
-1. **Which versions get the new card layout?**
-   - Version 1 must stay the lease as written, with no flags, since it's what you compare against. So the layout in decision 16 applies to Versions 2 and 3.
-   - Do both use the same card, with Version 2 in lease order and Version 3 in tier order?
-   - Or does only one of them change?
-   - You said to ask before changing how Version 3 shows tiers. This is that question.
-2. **"Ask before you sign" tag.** Today Versions 2 and 3 show a gold "Ask before you sign" tag on negotiable clauses. Does it become the flag marker on cards with an ask, next to "Good for you" on Best versions? Or is it replaced by the "What to ask" heading?
-3. **The proof line for dataset examples.** "From a lease a company filed publicly" fits the EDGAR leases. The research-dataset leases weren't necessarily filed by a company. Should dataset examples get a different first half, such as "From a real lease in a research dataset"? Or does the credit line alone cover them?
-4. **A tier from the version or from its clause type?** "A row can't be Approved until its tier is set": does a version count as having a tier when only its clause type has one? Suggestion: yes. A version uses its own tier if it has one, and otherwise its clause type's. The converter reports any Approved version with neither, and treats it as a draft.
-5. **The tier of an unsure card.** It shows two possible types, maybe with different tiers. Suggestion: place it by the more serious of the two, like decision 19.
-6. **A section with a flag and a "Good for you".** For example, a friendly cure period, then "provided, however" taking it back. Suggestion: the card is a flag, its versions are listed most serious first, and the "Good for you" version shows inside it with its marker.
-7. **The 4 risky warning phrases with no ask:** "jointly and severally", "personally", "at Tenant's sole cost and expense" and "irrevocable". Suggestion: they still show their meaning wherever they appear, but they aren't flags (decision 17), until you add an ask. Is that right, or did you mean to fill them?
+1. **The proof line for dataset examples.** "From a lease a company filed publicly" fits the EDGAR leases. The research-dataset leases weren't necessarily filed by a company. Should dataset examples get a different first half, such as "From a real lease in a research dataset"? Or does the credit line alone cover them?
+2. **A tier from the version or from its clause type?** "A row can't be Approved until its tier is set": does a version count as having a tier when only its clause type has one? Suggestion: yes. A version uses its own tier if it has one, and otherwise its clause type's. The converter reports any Approved version with neither, and treats it as a draft.
+3. **The tier of an unsure card.** It shows two possible types, maybe with different tiers. Suggestion: place it by the more serious of the two, like decision 19.
+4. **A section with a flag and a "Good for you".** For example, a friendly cure period, then "provided, however" taking it back. Suggestion: the card is a flag, its versions are listed most serious first, and the "Good for you" version shows inside it with its marker.
+5. **The 4 risky warning phrases with no ask:** "jointly and severally", "personally", "at Tenant's sole cost and expense" and "irrevocable". Suggestion: they still show their meaning wherever they appear, but they aren't flags (decision 17), until you add an ask. Is that right, or did you mean to fill them?
 
 ### Still open from before
 
-8. **"Left blank" sentences** for empty form blanks. Add a column on the Versions sheet, or one shared line in `content.json`?
-9. **Should your 23 word meanings from step 9c go into the Glossary sheet,** so there's one glossary?
-10. **Test tool timing.** A basic test tool in stage 1 would record sorting before I tune anything. Or keep it all in stage 4?
-11. **The two outside files.** The page loads pdf.js from cdnjs and the fonts from Google. They never see the lease. Copy them into the repo so the page uses no outside sites at all?
-12. **The sample lease button.** Keep today's 3 sample clauses, or retire it once uploads work well?
-13. **The legal-wording notes** in "What I checked" (Base Year, the unamortized period, a capital-cost fallback, the estimate, the bracket style, and the two release wordings). Will you change them in the workbook, or should I list exact suggestions for you to paste?
-14. **The 4 broken EDGAR links,** including Sensus, a proof example. Will you fix them, or should I list the working links?
+6. **"Left blank" sentences** for empty form blanks. Add a column on the Versions sheet, or one shared line in `content.json`?
+7. **Should your 23 word meanings from step 9c go into the Glossary sheet,** so there's one glossary?
+8. **Test tool timing.** A basic test tool in stage 1 would record sorting before I tune anything. Or keep it all in stage 4?
+9. **The two outside files.** The page loads pdf.js from cdnjs and the fonts from Google. They never see the lease. Copy them into the repo so the page uses no outside sites at all?
+10. **The sample lease button.** Keep today's 3 sample clauses, or retire it once uploads work well?
+11. **The legal-wording notes** in "What I checked" (Base Year, the unamortized period, a capital-cost fallback, the estimate, the bracket style, and the two release wordings). Will you change them in the workbook, or should I list exact suggestions for you to paste?
+12. **The 4 broken EDGAR links,** including Sensus, a proof example. Will you fix them, or should I list the working links?
 
 ### Before stage 1 starts
 
-Questions 1 and 2 decide how the cards fit into the versions, so I'd want those answered before building. The rest can wait.
+Nothing above blocks stage 1. I'll follow the suggestions in questions 2 to 5 unless you say otherwise, and ask about the rest when they come up.
