@@ -18,6 +18,7 @@ Zachary is not a software developer. Explain every change in plain words, withou
 - `clause-types.json`: the risk rank, level, "why" line, and asks for each clause type.
 - `index.html`, `style.css`, `app.js`: the page.
 - `PLAN.md`: the build plan once Zachary approves it.
+- `DRAFT-WORDING.md`: wording Claude drafted for Zachary to review, before it goes into the JSON files.
 
 ## Hosting
 
@@ -33,10 +34,15 @@ The page uses pdf.js (Mozilla's free PDF reader) to read uploaded PDFs, loaded a
 - Never commit a lease PDF to the repo. The GBREB form is copyrighted, and the repo is public.
 - Load all page text from `content.json`. Never hardcode page text.
 - Join each clause to its type in `clause-types.json` by the `type` field to get its rank, level, why, negotiable, and asks.
-- Never write, edit, or invent lease text, plain-language lines, ranks, or asks. They come only from the JSON files or, for lease text, from the uploaded PDF.
+- Never write, edit, or invent lease text. It comes only from the uploaded PDF or the `legalText` saved in `content.json`.
+- Never write, edit, or invent plain-language lines, ranks, or asks unless Zachary asks.
+- When Zachary asks, Claude may draft page wording, version descriptions, and glossary meanings. Drafts are written ahead of time, never by the page, so the page still makes no AI calls.
+  - Put drafts in `DRAFT-WORDING.md` first, for Zachary to review. Copy a draft into the JSON files only after he approves it.
+  - Each draft copied into a JSON file is named in the top-level `unverified` list in `content.json` until Zachary checks it. He deletes a name when he has checked it.
+  - Never say on the page that the wording was written by AI or by Claude. Zachary decides what the page says about it.
 - Do not change wording in the JSON files unless Zachary asks. If wording breaks a layout, report it instead of rewording it.
 - If a clause has no lease text, show `page.emptyExcerpt` in gray.
-- Ignore note fields: `status`, `source`, `legalTextNote`, `verified`, `internalName`, `lookFor`.
+- Ignore note fields: `status`, `source`, `legalTextNote`, `verified`, `unverified`, `internalName`, `lookFor`.
 
 ## Reading an uploaded lease
 

@@ -162,7 +162,12 @@ Status: waiting for your answers to the questions below. No page code is written
 
 ### Step 9: Changes from class feedback (10/23) (planned, not built)
 
-Status: waiting for your answers. No page code is written for this step. Suggestion: do this step before step 8, since you want these changes in before testing.
+Status: the wording is drafted in `DRAFT-WORDING.md` and waiting for your review. No page code is written for this step. It comes before step 8, since you want these changes in before testing.
+
+**Decided on 10/26:**
+- No live AI. Claude drafts all the wording ahead of time, and you check it. The page stays a plain static site, and the lease never leaves the computer.
+- Questions 1 to 4 below use the suggestions. Version descriptions stay neutral. The app name is the home button. Word meanings go in Versions 2 and 3 only. The next-steps box gathers the asks.
+- 9e (translate) waits until after testing.
 
 Your notes asked for six things. I've sorted them by size, smallest first.
 
