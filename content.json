@@ -250,7 +250,7 @@
     "C": {
       "internalName": "Most serious first",
       "order": "rank",
-      "description": "The riskiest parts first. Tap a card to see more.",
+      "description": "The riskiest parts first. Tap “Show the details” to see more.",
       "shows": [
         "shortHeading",
         "cardLine",
