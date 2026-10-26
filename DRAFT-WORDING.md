@@ -137,7 +137,7 @@ The asks themselves come from `clause-types.json`, as they do now. I didn't writ
 
 ## Simpler wording before going live (drafted 10/26)
 
-Status: **unverified.** Nothing here is on the page yet. You asked for descriptions an average business owner can understand right away.
+Status: **approved on 10/26 and copied into `content.json`,** using the second-pass versions where they overlap. Every changed field is named in the `unverified` list there. You asked for descriptions an average business owner can understand right away.
 
 What changed in these drafts:
 - Short sentences, mostly under 12 words.
