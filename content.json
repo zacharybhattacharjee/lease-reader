@@ -1,22 +1,34 @@
 {
   "status": "Draft. The clauses below are the sample lease, used for the demo and as a backup if the AI step fails. Zachary pastes the legalText excerpts and checks every plain-language line.",
   "source": "Greater Boston Real Estate Board Standard Form Commercial Lease. Short excerpts only.",
+  "unverified": [
+    "page.intro",
+    "page.uploadIntro",
+    "page.privacyNote",
+    "page.showDetails",
+    "page.hideDetails",
+    "versions.A.description",
+    "versions.B.description",
+    "versions.C.description"
+  ],
   "page": {
     "appName": "Clause & Effect",
     "title": "What can I ask?",
-    "intro": "These are three ways to show the same part of a commercial lease. Look at each one.",
+    "intro": "Before you sign a commercial lease, you need to know two things: what you can ask to change, and what can cost you the most. This tool finds key clauses in a lease and shows them three ways. Look at each one.",
     "versionLabel": "Version",
     "defaultOrder": "ABC",
     "youMeans": "In these explanations, \"you\" means the tenant: the business renting the space.",
     "governs": "An AI wrote these explanations to help you read the lease. Check each one against the lease text. The lease text governs.",
     "showLeaseText": "Show the lease text",
     "hideLeaseText": "Hide the lease text",
+    "showDetails": "Show the details",
+    "hideDetails": "Hide the details",
     "emptyExcerpt": "[Lease excerpt goes here]",
     "footer": "Prototype for a Northeastern University School of Law class. Not legal advice.",
     "uploadTitle": "Upload Your Lease",
-    "uploadIntro": "Upload a commercial lease as a PDF. The tool finds the key clauses and shows them three ways.",
+    "uploadIntro": "Upload a commercial lease as a PDF. The tool finds the key clauses and shows them three ways. It works with the Greater Boston Real Estate Board standard form, or a lease that uses the same wording.",
     "uploadButton": "Choose a lease",
-    "privacyNote": "Your lease is sent to Anthropic's AI service to be read. This tool does not keep a copy.",
+    "privacyNote": "Your lease stays on this computer. The tool reads it here and does not send it anywhere or keep a copy.",
     "sampleButton": "Use the sample lease instead",
     "reading": "Reading your lease. This can take a minute.",
     "governsSample": "The plain-language explanations help you read the lease. The lease text governs.",
@@ -102,6 +114,7 @@
     "A": {
       "internalName": "As written",
       "order": "lease",
+      "description": "The key clauses, word for word as the lease writes them.",
       "shows": [
         "heading",
         "legalText"
@@ -110,6 +123,7 @@
     "B": {
       "internalName": "Plain language and marks",
       "order": "lease",
+      "description": "The same clauses as the lease writes them, with plain-language notes, a risk number, and what to ask the landlord.",
       "shows": [
         "heading",
         "legalText",
@@ -123,6 +137,7 @@
     "C": {
       "internalName": "Most serious first",
       "order": "rank",
+      "description": "Short cards, starting with the clause that can cost you the most. Open a card to see the plain-language notes and the lease text.",
       "shows": [
         "shortHeading",
         "cardLine",

@@ -195,6 +195,11 @@ main {
   margin-top: 24px;
 }
 
+.privacy-note {
+  margin-top: 16px;
+  color: var(--plum-muted);
+}
+
 .upload-status:not(:empty),
 .upload-error:not(:empty) {
   margin-top: 16px;
@@ -295,9 +300,23 @@ main {
   margin-top: 56px;
 }
 
+/* With the switcher, one version shows at a time, so Versions 2 and 3
+   sit as close to the switcher as Version 1 does. */
+.version-switcher ~ .version + .version {
+  margin-top: 0;
+}
+
 .version-heading {
   font-size: 1.5rem;
   margin-bottom: 24px;
+}
+
+/* The line under the heading saying what this version shows. */
+.version-description {
+  margin: -16px 0 24px;
+  max-width: 36rem;
+  font-size: 1.125rem;
+  color: var(--plum-muted);
 }
 
 .clause + .clause {

@@ -290,6 +290,9 @@ function renderVersion(content, clauses, letter, number) {
   heading.tabIndex = -1; // so switching versions can move focus here
   section.append(heading);
 
+  // One line saying what this version shows, from the version's "description".
+  if (version.description) section.append(make("p", "version-description", version.description));
+
   if (version.shows.includes("governsNote")) section.append(renderVersionNotes(content));
 
   const byRank = version.order === "rank";
@@ -434,11 +437,11 @@ function renderUploadScreen(content, types) {
     make("h2", "upload-title", page.uploadTitle),
     make("p", "upload-intro", page.uploadIntro),
     buttons,
+    make("p", "privacy-note", page.privacyNote),
     status,
     error,
     fileInput,
   );
-  // page.privacyNote is left off until its wording matches how the page works.
   screen.replaceChildren(card);
 }
 

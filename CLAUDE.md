@@ -61,6 +61,7 @@ The page uses pdf.js (Mozilla's free PDF reader) to read uploaded PDFs, loaded a
 - A shows the lease text in lease order (`leaseOrder`).
 - B shows the lease text in lease order, with the plain-language lines, the negotiable tag and asks, and the risk rank.
 - C shows short cards ordered by rank, highest risk first. Tapping a card shows the plain-language lines and the lease text.
+- Each version shows its `description` line under its heading. The line stays with its version when `?order=` changes the numbers.
 - B and C show `page.governsSample` at the top, so no one mistakes the explanation for the lease.
 - Number risk ranks among the clauses shown, from 1, in the order of `rank` in `clause-types.json`.
 

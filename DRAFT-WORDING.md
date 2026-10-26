@@ -11,6 +11,8 @@ How to review it:
 
 ## 9a. What the tool does, and each version
 
+Approved on 10/26 and copied into `content.json`. Each field is named in the `unverified` list there until you check it on the page.
+
 ### The intro at the top of the page (`page.intro`, replaces the current one)
 
 Now: "These are three ways to show the same part of a commercial lease. Look at each one."
