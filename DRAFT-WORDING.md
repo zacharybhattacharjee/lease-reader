@@ -135,6 +135,44 @@ The asks themselves come from `clause-types.json`, as they do now. I didn't writ
 
 ---
 
+## Simpler wording before going live (drafted 10/26)
+
+Status: **unverified.** Nothing here is on the page yet. You asked for descriptions an average business owner can understand right away.
+
+What changed in these drafts:
+- Short sentences, mostly under 12 words.
+- No legal or design words: no "clause", "governs", "plain-language notes" or "risk number".
+- The version lines still only say what's on the screen, not which version is better.
+
+### Lines I drafted earlier
+
+| Field | Now | Suggested |
+| --- | --- | --- |
+| `page.intro` | Before you sign a commercial lease, you need to know two things: what you can ask to change, and what can cost you the most. This tool finds key clauses in a lease and shows them three ways. Look at each one. | See what you can ask to change in your lease, and what could cost you the most. Try all three versions. |
+| `page.uploadIntro` | Upload a commercial lease as a PDF. The tool finds the key clauses and shows them three ways. It works with the Greater Boston Real Estate Board standard form, or a lease that uses the same wording. | Choose your lease as a PDF. The tool pulls out the parts that matter most. It works with the Greater Boston Real Estate Board standard lease. |
+| `page.privacyNote` | Your lease stays on this computer. The tool reads it here and does not send it anywhere or keep a copy. | Your lease stays on your computer. Nothing is sent or saved. |
+| `versions.A.description` | The key clauses, word for word as the lease writes them. | The lease's own words. |
+| `versions.B.description` | The same clauses as the lease writes them, with plain-language notes, a risk number, and what to ask the landlord. | The lease's own words, explained simply, with how risky each part is and what to ask for. |
+| `versions.C.description` | Short cards, starting with the clause that can cost you the most. Open a card to see the plain-language notes and the lease text. | The riskiest parts first. Tap a card to see more. |
+| `page.nextStepsIntro` | Here is every ask on this page in one list. Before you sign, send it to the landlord in writing, and keep a copy. | Everything to ask for, in one list. Send it to the landlord in writing before you sign. |
+
+Two of these say a little less than before:
+- **The upload line** drops "or a lease that uses the same wording". That's still true, but most owners won't know whether their lease uses the same wording.
+- **The next-steps line** drops "and keep a copy". Add it back if you want it.
+
+### Your own lines, which you may also want simpler
+
+You wrote these earlier, so I've only suggested changes. Keep any as they are.
+
+| Field | Now | Suggested |
+| --- | --- | --- |
+| `page.governsSample` | The plain-language explanations help you read the lease. The lease text governs. | These explanations help you read the lease. If they ever differ, the lease's own words win. |
+| `page.youMeans` | In these explanations, "you" means the tenant: the business renting the space. | "You" means your business, the tenant. |
+| `tags.consequence.scale` | Ranked from 1, the clause that can cost you the most. | Number 1 could cost you the most. |
+| `page.notFoundNote` | The tool did not find these clauses. The lease may not have them, or the tool may have missed them. | The tool didn't find these parts. Your lease may not have them, or the tool may have missed them. |
+
+The other lines are already short and clear, so I left them alone: the title, "Upload Your Lease", the reading message, the error message and the tap-a-word hint.
+
 ## Still yours to decide
 
 - **9e. Translate.** I left it out, as you asked. It waits until after testing.
