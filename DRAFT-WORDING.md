@@ -173,6 +173,30 @@ You wrote these earlier, so I've only suggested changes. Keep any as they are.
 
 The other lines are already short and clear, so I left them alone: the title, "Upload Your Lease", the reading message, the error message and the tap-a-word hint.
 
+### Second pass: a Boston owner using it for the first time
+
+Picture someone who runs a café or a salon, has never read a lease closely, and just got one by email from a broker. I went through the page screen by screen and asked where they'd get stuck.
+
+**Wording changes.** These replace the suggestions above where they overlap.
+
+| Where | The owner thinks | Suggested |
+| --- | --- | --- |
+| Upload screen (`page.uploadIntro`) | "Is mine a Greater Boston Real Estate Board lease? How would I know?" | Choose your lease as a PDF. The tool pulls out the parts that matter most. It works with one common Boston lease: look for "Standard Form Commercial Lease" at the top of page 1. |
+| Privacy note (`page.privacyNote`) | On a phone: "What computer?" | Your lease never leaves this device. Nothing is sent or saved. |
+| Sample button (`page.sampleButton`, your line) | "Instead of what? Is this my lease?" | Try it with a sample lease |
+| Error (`page.error`, your line) | "What does 'select the text' mean?" Most owners get a scanned copy, which is exactly when this appears. | The tool couldn't read this file. If it's a scan or a photo, ask your landlord or broker for the original PDF. |
+| Top of Versions 2 and 3 (`tags.consequence.scale`, your line) | "Risk of what?" | Number 1 could cost you the most money, or your space. |
+| What to do next (`page.nextStepsIntro`) | "Can I just email this to the landlord?" | Everything to ask for, in one list. Email it to your landlord or broker before you sign, and keep a copy. |
+
+**Things wording can't fix.** These are layout or content calls, so they're yours. Each comes from the same first-time owner.
+
+1. **"Who do I ask, and do I need a lawyer?"** The page says to ask the landlord, but many first-time owners won't feel able to. One line pointing to free help, such as the Community Business Clinic, could matter most of all. Any wording that names the CBC goes through this file first. You'd also need to confirm the clinic is happy to be named.
+2. **The tap-a-word hint is easy to miss.** It sits in the notes box at the top. On a phone, the owner has scrolled well past it before seeing the first dotted underline. Moving it next to the first lease text would be a layout change.
+3. **Blank form, blank gaps.** Your test PDF is the blank form, so 6B reads "…percent of any increase in operating expenses over those incurred during the calendar year ." with gaps where the numbers go. A tester may think the tool broke. Testing with a filled-in copy would avoid that, as long as it has no real tenant's details.
+4. **"Version 1, 2, 3" means nothing to an owner.** That's on purpose for testing, and the intro now says to try all three. Just know that a real owner, rather than a tester, would want one view, not three.
+5. **"Upload a different lease" is the first button after the upload.** A first-timer might press it, thinking it's the next step. Moving it below the versions would be a layout change.
+6. **Many Boston owners read English as a second language.** That's 9e (translate), which you set aside until after testing. Worth noting as something to watch in testing.
+
 ## Still yours to decide
 
 - **9e. Translate.** I left it out, as you asked. It waits until after testing.
