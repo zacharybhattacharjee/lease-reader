@@ -160,6 +160,48 @@ Status: waiting for your answers to the questions below. No page code is written
 - **8b. The highlights.** The gold marks and the clause list at the top. You check that each mark covers the right words.
 - **8c. Jumping from a clause.** The "See it in the lease" buttons, if you want them (question 2). You check that each one opens the right spot, and that closing the view takes you back to that clause.
 
+### Step 9: Changes from class feedback (10/23) (planned, not built)
+
+Status: waiting for your answers. No page code is written for this step. Suggestion: do this step before step 8, since you want these changes in before testing.
+
+Your notes asked for six things. I've sorted them by size, smallest first.
+
+**9a. Say what the tool does, and what each version is.** *(Wording only.)*
+
+- **Today:** the top of the page says "These are three ways to show the same part of a commercial lease. Look at each one." It doesn't say what the tool is for, or how the versions differ.
+- **Plan:** you rewrite `page.intro`, and add one short line per version (a new `description` field on each version in `content.json`). The page shows that line under the "Version 1" heading. You write every word. I don't.
+- **Question 1.** A version description tells testers what to notice, and that can steer what they say. Do you want the descriptions to explain (for example "The lease, with plain-language notes beside it"), or to stay neutral (for example "The same clauses, shown a different way")?
+
+**9b. A home button.** *(Small.)*
+
+- **Today:** after you upload, the only way back is the "Upload a different lease" button at the top of the results.
+- **Plan:** the "Clause & Effect" name at the top becomes a button that goes back to the start, and clears the lease, as "Upload a different lease" does now. No new wording needed.
+- **Question 2.** Is that what "home button" meant, or did you mean something else? For example, going back to Version 1, or a button that stays at the bottom of the screen.
+
+**9c. Tap a word to see what it means.** *(Medium.)*
+
+- **Plan:** you write a short list of legal words and their meanings, such as LESSOR, LESSEE, sublet, assign, default, covenants and "residue of the term". It goes in a new `glossary` list in `content.json`. In the lease text, those words get a dotted underline. Tapping one opens its meaning just below the line, and tapping again closes it. It works by tap, not hover, because phones can't hover.
+- **Wording you'd add:** the `glossary` list (each entry has a word and a meaning), and `page.glossaryClose`, the label screen readers hear for closing a meaning.
+- **Question 3.** Which versions get it? Suggestion: Versions 2 and 3 only (B and C). Version 1 stays the lease as written, so you can compare against it. You turn it on with a new `glossary` item in each version's `shows` list, so you can move it later without a code change.
+
+**9d. "What do I do next?"** *(Medium.)*
+
+- **Today:** Versions 2 and 3 already list asks for each clause ("Before you sign, ask the landlord in writing for: …"), but nothing pulls them together.
+- **Suggestion:** at the end of Versions 2 and 3, a short "next steps" box that gathers every ask in one list, with a "Print this list" button. It uses the asks already in `clause-types.json`. Printing uses the browser's own print screen, and nothing is saved.
+- **Wording you'd add:** `page.nextStepsTitle` (for example "What to do next"), `page.nextStepsIntro` (one line), and `page.printButton` (for example "Print this list").
+- **Question 4.** Is that what the class meant? Or did they mean something on each clause, such as a "what to do" line you'd write for every clause type?
+
+**9e. A translate button.** *(Large. Suggestion: after testing.)*
+
+- **Question 5.** Did the class mean other languages, such as Spanish or Chinese, or "translate the legal words into plain English"? Versions 2 and 3, plus 9c, already do the second.
+- **If other languages:** the page can't translate without AI or an outside service, and both break the rules in `CLAUDE.md`. So someone you trust would have to translate the page wording and plain-language lines into a second copy of `content.json`. The button would switch between the two copies. The lease text would stay in English, since the English lease is what binds. I'd also mark the lease text so a browser's own translate feature leaves it alone.
+
+**9f. "Does this help testers understand? Is there a real benefit between versions?"** *(Nothing to build.)*
+
+- This is what the testing is for, so it belongs in the observers' notes, not on the page. Suggestion: after each version, observers ask the tester the same two questions. For example: "Which clause could cost you the most?" and "What would you ask the landlord to change?" Then you can compare answers across versions. I can draft these for you to edit if you'd like.
+
+**The steps, once you approve.** I stop after each one so you can check it: 9a, then 9b, then 9c, then 9d. 9e waits until after testing, unless you decide otherwise.
+
 ## What the page will not do
 
 - No AI, and no server.
