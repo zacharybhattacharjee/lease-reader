@@ -51,6 +51,8 @@ The cards now say "Show the lease text", but the button also opens the plain-lan
 
 ## 9b. Home button
 
+Copied into `content.json` on 10/26, and named in the `unverified` list there.
+
 The "Clause & Effect" name at the top becomes the button, so there's no new visible wording. Screen readers hear the name, then this:
 
 | Field | Wording |

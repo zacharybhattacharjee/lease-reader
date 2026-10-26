@@ -28,20 +28,29 @@ function make(tag, className, text) {
 // ---------- Page frame ----------
 
 // Shows the app name with its "&" set apart, so the stylesheet can highlight it.
-function renderAppName(name) {
-  const element = document.getElementById("app-name");
+// The name is also the home button: it goes back to the upload screen and
+// clears the lease. Screen readers hear page.homeLabel after the name.
+function renderAppName(name, homeLabel) {
+  const button = make("button", "home-button");
+  button.type = "button";
   const [before, ...rest] = name.split("&");
   if (rest.length === 0) {
-    element.textContent = name;
-    return;
+    button.textContent = name;
+  } else {
+    button.append(before, make("span", "amp", "&"), rest.join("&"));
   }
-  const amp = make("span", "amp", "&");
-  element.replaceChildren(before, amp, rest.join("&"));
+
+  const label = make("span", "visually-hidden", homeLabel);
+  label.id = "home-label";
+  button.setAttribute("aria-describedby", label.id);
+  button.addEventListener("click", () => showUploadScreen());
+
+  document.getElementById("app-name").replaceChildren(button, label);
 }
 
 function renderFrame(page) {
   document.title = page.appName;
-  renderAppName(page.appName);
+  renderAppName(page.appName, page.homeLabel);
   setText("title", page.title);
   setText("intro", page.intro);
   setText("footer-note", page.footer);

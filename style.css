@@ -82,6 +82,25 @@ p {
   letter-spacing: -0.015em;
 }
 
+/* The app name is also the home button, so it looks like the logo, not a button. */
+.home-button {
+  min-height: 44px;
+  margin: 0 0 0 -4px;
+  padding: 0 4px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.home-button:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 4px;
+}
+
 .app-name .amp {
   position: relative;
   display: inline-block;

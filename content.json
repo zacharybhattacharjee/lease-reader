@@ -9,10 +9,12 @@
     "page.hideDetails",
     "versions.A.description",
     "versions.B.description",
-    "versions.C.description"
+    "versions.C.description",
+    "page.homeLabel"
   ],
   "page": {
     "appName": "Clause & Effect",
+    "homeLabel": "Back to the start",
     "title": "What can I ask?",
     "intro": "Before you sign a commercial lease, you need to know two things: what you can ask to change, and what can cost you the most. This tool finds key clauses in a lease and shows them three ways. Look at each one.",
     "versionLabel": "Version",

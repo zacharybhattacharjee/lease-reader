@@ -162,7 +162,7 @@ Status: waiting for your answers to the questions below. No page code is written
 
 ### Step 9: Changes from class feedback (10/23) (planned, not built)
 
-Status: 9a is built and waiting for you to check it. The wording for 9b to 9d is drafted in `DRAFT-WORDING.md` and waiting for your review. This step comes before step 8, since you want these changes in before testing.
+Status: 9a and 9b are built and waiting for you to check them. The wording for 9c and 9d is drafted in `DRAFT-WORDING.md` and waiting for your review. This step comes before step 8, since you want these changes in before testing.
 
 **Decided on 10/26:**
 - No live AI. Claude drafts all the wording ahead of time, and you check it. The page stays a plain static site, and the lease never leaves the computer.
@@ -218,4 +218,11 @@ Your notes asked for six things. I've sorted them by size, smallest first.
 
 ## Possible later
 
+- **After testing: a bigger clause library (decided 10/26, not planned in detail yet).** You want more than three clauses, and more than one lease form. The idea: a library of common versions of each clause, written ahead of time and reviewed by Darryl. The page sorts each part of the lease into the library by its wording, and fills the lease's own numbers into the plain-language lines. The stages:
+  1. More clauses from the GBREB form.
+  2. Fill in the lease's own numbers.
+  3. Warning phrases and word meanings across the whole lease.
+  4. A second lease form, checked against your hand-marked answer key.
+  
+  Reading scanned PDFs waits. Step 9 comes first, so you can test.
 - A view of the whole uploaded lease, with the key clauses highlighted on the real pages. Now planned as step 8.
