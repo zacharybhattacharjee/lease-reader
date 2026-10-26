@@ -1,29 +1,58 @@
 {
   "status": "Draft. The clauses below are the sample lease, used for the demo and as a backup if the AI step fails. Zachary pastes the legalText excerpts and checks every plain-language line.",
   "source": "Greater Boston Real Estate Board Standard Form Commercial Lease. Short excerpts only.",
+  "unverified": [
+    "page.intro",
+    "page.uploadIntro",
+    "page.privacyNote",
+    "page.showDetails",
+    "page.hideDetails",
+    "versions.A.description",
+    "versions.B.description",
+    "versions.C.description",
+    "page.homeLabel",
+    "page.glossaryHint",
+    "glossary",
+    "page.nextStepsTitle",
+    "page.nextStepsIntro",
+    "page.printButton",
+    "page.governsSample",
+    "page.youMeans",
+    "tags.consequence.scale",
+    "page.notFoundNote",
+    "page.sampleButton",
+    "page.error"
+  ],
   "page": {
     "appName": "Clause & Effect",
+    "homeLabel": "Back to the start",
     "title": "What can I ask?",
-    "intro": "These are three ways to show the same part of a commercial lease. Look at each one.",
+    "intro": "See what you can ask to change in your lease, and what could cost you the most. Try all three versions.",
     "versionLabel": "Version",
     "defaultOrder": "ABC",
-    "youMeans": "In these explanations, \"you\" means the tenant: the business renting the space.",
+    "youMeans": "\"You\" means your business, the tenant.",
     "governs": "An AI wrote these explanations to help you read the lease. Check each one against the lease text. The lease text governs.",
     "showLeaseText": "Show the lease text",
     "hideLeaseText": "Hide the lease text",
+    "showDetails": "Show the details",
+    "hideDetails": "Hide the details",
+    "glossaryHint": "Tap an underlined word to see what it means.",
+    "nextStepsTitle": "What to do next",
+    "nextStepsIntro": "Everything to ask for, in one list. Email it to your landlord or broker before you sign, and keep a copy.",
+    "printButton": "Print this list",
     "emptyExcerpt": "[Lease excerpt goes here]",
     "footer": "Prototype for a Northeastern University School of Law class. Not legal advice.",
     "uploadTitle": "Upload Your Lease",
-    "uploadIntro": "Upload a commercial lease as a PDF. The tool finds the key clauses and shows them three ways.",
+    "uploadIntro": "Choose your lease as a PDF. The tool pulls out the parts that matter most. It works with one common Boston lease: look for \"Standard Form Commercial Lease\" at the top of page 1.",
     "uploadButton": "Choose a lease",
-    "privacyNote": "Your lease is sent to Anthropic's AI service to be read. This tool does not keep a copy.",
-    "sampleButton": "Use the sample lease instead",
+    "privacyNote": "Your lease never leaves this device. Nothing is sent or saved.",
+    "sampleButton": "Try it with a sample lease",
     "reading": "Reading your lease. This can take a minute.",
-    "governsSample": "The plain-language explanations help you read the lease. The lease text governs.",
+    "governsSample": "These explanations help you read the lease. If they ever differ, the lease's own words win.",
     "notFoundTitle": "Not found in this lease",
-    "notFoundNote": "The tool did not find these clauses. The lease may not have them, or the tool may have missed them.",
+    "notFoundNote": "The tool didn't find these parts. Your lease may not have them, or the tool may have missed them.",
     "excerptWarning": "Check this one. The quoted text did not match the lease word for word.",
-    "error": "The tool could not read this lease. Try a PDF where you can select the text, or try again.",
+    "error": "The tool couldn't read this file. If it's a scan or a photo, ask your landlord or broker for the original PDF.",
     "startOver": "Upload a different lease"
   },
   "tags": {
@@ -38,9 +67,103 @@
         "high": "High risk",
         "moderate": "Moderate risk"
       },
-      "scale": "Ranked from 1, the clause that can cost you the most."
+      "scale": "Number 1 could cost you the most money, or your space."
     }
   },
+  "glossary": [
+    {
+      "words": "LESSOR",
+      "meaning": "The landlord: the owner who rents the space to you."
+    },
+    {
+      "words": "LESSEE",
+      "meaning": "You, the tenant: the business renting the space."
+    },
+    {
+      "words": "leased premises",
+      "meaning": "The space you are renting."
+    },
+    {
+      "words": "additional rent",
+      "meaning": "Money you owe on top of your base rent. The lease counts it as rent."
+    },
+    {
+      "words": "operating expenses",
+      "meaning": "The landlord's costs of running and keeping up the building and its land. This section lists what counts."
+    },
+    {
+      "words": "capital expenditure",
+      "meaning": "Money spent on a lasting improvement to the building, such as a new boiler or roof."
+    },
+    {
+      "words": "amortized",
+      "meaning": "Spread out over several years. You pay a yearly share, not the whole cost at once."
+    },
+    {
+      "words": "assign",
+      "meaning": "Hand your lease over to another business, which takes your place as tenant."
+    },
+    {
+      "words": "sublet",
+      "meaning": "Rent some or all of your space to another business while you stay the tenant."
+    },
+    {
+      "words": "prior written consent",
+      "meaning": "Permission in writing, which you must get before you act."
+    },
+    {
+      "words": "Notwithstanding",
+      "meaning": "Even so. Here: even if the landlord says yes."
+    },
+    {
+      "words": "liable",
+      "meaning": "Legally responsible. If someone else doesn't pay, you must."
+    },
+    {
+      "words": "covenants",
+      "meaning": "Promises you make in the lease."
+    },
+    {
+      "words": "default",
+      "meaning": "Failing to do something the lease requires, such as paying rent on time."
+    },
+    {
+      "words": "written notice",
+      "meaning": "A written message from the landlord about a problem. Your time to fix it starts from the notice. Section 20 says when a notice counts as delivered, which can be when it is mailed."
+    },
+    {
+      "words": "insolvent",
+      "meaning": "Unable to pay your debts as they come due."
+    },
+    {
+      "words": "for the benefit of creditors",
+      "meaning": "Handing your business property to someone who sells it to pay the people you owe."
+    },
+    {
+      "words": "re-enter and take complete possession",
+      "meaning": "Come back into the space and take it back from you."
+    },
+    {
+      "words": "effects",
+      "meaning": "Your belongings in the space, such as furniture, equipment and stock."
+    },
+    {
+      "words": "without prejudice to any remedies",
+      "meaning": "Without giving up any of the landlord's other ways to get paid."
+    },
+    {
+      "words": "arrears",
+      "meaning": "Money that is overdue."
+    },
+    {
+      "words": "indemnify",
+      "meaning": "Pay someone back for a loss. Here, you pay the landlord back for the rent it loses."
+    },
+    {
+      "words": "residue of the term",
+      "meaning": "The time left on the lease."
+    }
+  ],
   "clauses": [
     {
       "id": "6B",
@@ -102,6 +225,7 @@
     "A": {
       "internalName": "As written",
       "order": "lease",
+      "description": "The lease's own words.",
       "shows": [
         "heading",
         "legalText"
@@ -110,6 +234,7 @@
     "B": {
       "internalName": "Plain language and marks",
       "order": "lease",
+      "description": "The lease's own words, explained simply, with how risky each part is and what to ask for.",
       "shows": [
         "heading",
         "legalText",
@@ -117,12 +242,15 @@
         "negotiableTag",
         "asks",
         "consequenceRank",
-        "governsNote"
+        "governsNote",
+        "glossary",
+        "nextSteps"
       ]
     },
     "C": {
       "internalName": "Most serious first",
       "order": "rank",
+      "description": "The riskiest parts first. Tap “Show the details” to see more.",
       "shows": [
         "shortHeading",
         "cardLine",
@@ -131,7 +259,9 @@
         "negotiableTag",
         "asks",
         "plainAndLegalTextOnTap",
-        "governsNote"
+        "governsNote",
+        "glossary",
+        "nextSteps"
       ]
     }
   }

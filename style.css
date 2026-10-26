@@ -82,6 +82,25 @@ p {
   letter-spacing: -0.015em;
 }
 
+/* The app name is also the home button, so it looks like the logo, not a button. */
+.home-button {
+  min-height: 44px;
+  margin: 0 0 0 -4px;
+  padding: 0 4px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.home-button:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 4px;
+}
+
 .app-name .amp {
   position: relative;
   display: inline-block;
@@ -195,6 +214,11 @@ main {
   margin-top: 24px;
 }
 
+.privacy-note {
+  margin-top: 16px;
+  color: var(--plum-muted);
+}
+
 .upload-status:not(:empty),
 .upload-error:not(:empty) {
   margin-top: 16px;
@@ -295,9 +319,23 @@ main {
   margin-top: 56px;
 }
 
+/* With the switcher, one version shows at a time, so Versions 2 and 3
+   sit as close to the switcher as Version 1 does. */
+.version-switcher ~ .version + .version {
+  margin-top: 0;
+}
+
 .version-heading {
   font-size: 1.5rem;
   margin-bottom: 24px;
+}
+
+/* The line under the heading saying what this version shows. */
+.version-description {
+  margin: -16px 0 24px;
+  max-width: 36rem;
+  font-size: 1.125rem;
+  color: var(--plum-muted);
 }
 
 .clause + .clause {
@@ -332,6 +370,49 @@ main {
 
 .empty-excerpt {
   color: var(--gray-text);
+}
+
+/* Glossary words in the lease text: a dotted underline that opens the
+   word's meaning on a light slate tint, just below the line. */
+
+.term {
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: underline dotted var(--slate);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.term[aria-expanded="true"] {
+  background: var(--slate-tint);
+  text-decoration-style: solid;
+}
+
+.term:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 2px;
+}
+
+.term-meaning {
+  display: block;
+  margin: 6px 0 10px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--slate);
+  border-radius: 0 8px 8px 0;
+  background: var(--slate-tint);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.term-meaning[hidden] {
+  display: none;
 }
 
 /* Version 3 cards: one short card per clause, highest risk first. */
@@ -481,6 +562,49 @@ main {
 .asks-intro {
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+/* What to do next: every ask in one list, at the end of Versions 2 and 3. */
+
+.next-steps {
+  margin-top: 48px;
+  padding: 24px 20px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.next-steps-title {
+  font-size: 1.375rem;
+}
+
+.next-steps-intro {
+  margin: 8px 0 16px;
+}
+
+.print-button {
+  margin-top: 24px;
+}
+
+/* "Print this list" prints only the box: everything else is hidden
+   while the page has the "print-list" class. */
+@media print {
+  body.print-list .masthead,
+  body.print-list .site-footer,
+  body.print-list .results > :not(.version),
+  body.print-list .version > :not(.next-steps),
+  body.print-list .print-button {
+    display: none;
+  }
+
+  body.print-list .next-steps {
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
 }
 
 /* Footer */
