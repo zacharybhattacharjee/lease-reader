@@ -372,6 +372,49 @@ main {
   color: var(--gray-text);
 }
 
+/* Glossary words in the lease text: a dotted underline that opens the
+   word's meaning on a light slate tint, just below the line. */
+
+.term {
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: underline dotted var(--slate);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.term[aria-expanded="true"] {
+  background: var(--slate-tint);
+  text-decoration-style: solid;
+}
+
+.term:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 2px;
+}
+
+.term-meaning {
+  display: block;
+  margin: 6px 0 10px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--slate);
+  border-radius: 0 8px 8px 0;
+  background: var(--slate-tint);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.term-meaning[hidden] {
+  display: none;
+}
+
 /* Version 3 cards: one short card per clause, highest risk first. */
 
 .card-list > .clause {

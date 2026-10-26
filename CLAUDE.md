@@ -63,6 +63,7 @@ The page uses pdf.js (Mozilla's free PDF reader) to read uploaded PDFs, loaded a
 - C shows short cards ordered by rank, highest risk first. Tapping a card shows the plain-language lines and the lease text.
 - Each version shows its `description` line under its heading. The line stays with its version when `?order=` changes the numbers.
 - B and C show `page.governsSample` at the top, so no one mistakes the explanation for the lease.
+- A version whose `shows` list has `glossary` underlines the words from the `glossary` list in `content.json`, the first time each appears in a clause's lease text. Tapping a word opens its meaning below the line. `page.glossaryHint` shows in the notes at the top only when the lease text has an underlined word.
 - Number risk ranks among the clauses shown, from 1, in the order of `rank` in `clause-types.json`.
 
 ## How testers see it

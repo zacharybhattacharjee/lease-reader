@@ -10,7 +10,9 @@
     "versions.A.description",
     "versions.B.description",
     "versions.C.description",
-    "page.homeLabel"
+    "page.homeLabel",
+    "page.glossaryHint",
+    "glossary"
   ],
   "page": {
     "appName": "Clause & Effect",
@@ -25,6 +27,7 @@
     "hideLeaseText": "Hide the lease text",
     "showDetails": "Show the details",
     "hideDetails": "Hide the details",
+    "glossaryHint": "Tap an underlined word to see what it means.",
     "emptyExcerpt": "[Lease excerpt goes here]",
     "footer": "Prototype for a Northeastern University School of Law class. Not legal advice.",
     "uploadTitle": "Upload Your Lease",
@@ -55,6 +58,100 @@
       "scale": "Ranked from 1, the clause that can cost you the most."
     }
   },
+  "glossary": [
+    {
+      "words": "LESSOR",
+      "meaning": "The landlord: the owner who rents the space to you."
+    },
+    {
+      "words": "LESSEE",
+      "meaning": "You, the tenant: the business renting the space."
+    },
+    {
+      "words": "leased premises",
+      "meaning": "The space you are renting."
+    },
+    {
+      "words": "additional rent",
+      "meaning": "Money you owe on top of your base rent. The lease counts it as rent."
+    },
+    {
+      "words": "operating expenses",
+      "meaning": "The landlord's costs of running and keeping up the building and its land. This section lists what counts."
+    },
+    {
+      "words": "capital expenditure",
+      "meaning": "Money spent on a lasting improvement to the building, such as a new boiler or roof."
+    },
+    {
+      "words": "amortized",
+      "meaning": "Spread out over several years. You pay a yearly share, not the whole cost at once."
+    },
+    {
+      "words": "assign",
+      "meaning": "Hand your lease over to another business, which takes your place as tenant."
+    },
+    {
+      "words": "sublet",
+      "meaning": "Rent some or all of your space to another business while you stay the tenant."
+    },
+    {
+      "words": "prior written consent",
+      "meaning": "Permission in writing, which you must get before you act."
+    },
+    {
+      "words": "Notwithstanding",
+      "meaning": "Even so. Here: even if the landlord says yes."
+    },
+    {
+      "words": "liable",
+      "meaning": "Legally responsible. If someone else doesn't pay, you must."
+    },
+    {
+      "words": "covenants",
+      "meaning": "Promises you make in the lease."
+    },
+    {
+      "words": "default",
+      "meaning": "Failing to do something the lease requires, such as paying rent on time."
+    },
+    {
+      "words": "written notice",
+      "meaning": "A written message from the landlord about a problem. Your time to fix it starts from the notice. Section 20 says when a notice counts as delivered, which can be when it is mailed."
+    },
+    {
+      "words": "insolvent",
+      "meaning": "Unable to pay your debts as they come due."
+    },
+    {
+      "words": "for the benefit of creditors",
+      "meaning": "Handing your business property to someone who sells it to pay the people you owe."
+    },
+    {
+      "words": "re-enter and take complete possession",
+      "meaning": "Come back into the space and take it back from you."
+    },
+    {
+      "words": "effects",
+      "meaning": "Your belongings in the space, such as furniture, equipment and stock."
+    },
+    {
+      "words": "without prejudice to any remedies",
+      "meaning": "Without giving up any of the landlord's other ways to get paid."
+    },
+    {
+      "words": "arrears",
+      "meaning": "Money that is overdue."
+    },
+    {
+      "words": "indemnify",
+      "meaning": "Pay someone back for a loss. Here, you pay the landlord back for the rent it loses."
+    },
+    {
+      "words": "residue of the term",
+      "meaning": "The time left on the lease."
+    }
+  ],
   "clauses": [
     {
       "id": "6B",
@@ -133,7 +230,8 @@
         "negotiableTag",
         "asks",
         "consequenceRank",
-        "governsNote"
+        "governsNote",
+        "glossary"
       ]
     },
     "C": {
@@ -148,7 +246,8 @@
         "negotiableTag",
         "asks",
         "plainAndLegalTextOnTap",
-        "governsNote"
+        "governsNote",
+        "glossary"
       ]
     }
   }

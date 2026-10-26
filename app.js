@@ -137,10 +137,16 @@ const clauseParts = {
     return make("h3", "clause-heading", clause.heading);
   },
 
-  legalText(clause, content) {
+  legalText(clause, content, version) {
     const panel = make("div", "lease-text");
     if (clause.legalText) {
-      panel.append(make("p", "", clause.legalText));
+      const paragraph = make("p");
+      if (version.shows.includes("glossary")) {
+        paragraph.append(...withGlossaryWords(clause.legalText, content.glossary));
+      } else {
+        paragraph.textContent = clause.legalText;
+      }
+      panel.append(paragraph);
     } else {
       panel.append(make("p", "empty-excerpt", content.page.emptyExcerpt));
     }
@@ -196,7 +202,7 @@ const clauseParts = {
   // A button that opens and closes the plain-language lines and the lease text.
   // It uses page.showDetails and page.hideDetails if they exist, and
   // page.showLeaseText and page.hideLeaseText until then.
-  plainAndLegalTextOnTap(clause, content) {
+  plainAndLegalTextOnTap(clause, content, version) {
     const page = content.page;
     const showWords = page.showDetails || page.showLeaseText;
     const hideWords = page.hideDetails || page.hideLeaseText;
@@ -206,7 +212,7 @@ const clauseParts = {
     details.hidden = true;
     const plain = clauseParts.plain(clause, content);
     if (plain) details.append(plain);
-    details.append(clauseParts.legalText(clause, content));
+    details.append(clauseParts.legalText(clause, content, version));
 
     const button = make("button", "button button-secondary details-button", showWords);
     button.type = "button";
@@ -227,6 +233,71 @@ const clauseParts = {
 
 // Gives each opening panel its own id, so its button can point to it.
 let detailsCount = 0;
+
+// ---------- Word meanings (glossary) ----------
+
+// Finds where a glossary entry's words first appear in a lease text:
+// whole words only, any case, any spacing between the words.
+function firstMatch(text, words) {
+  const pattern = words
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("\\s+");
+  // The first group checks the character before the words, so the match
+  // starts at a word's beginning. (Older phone browsers lack a simpler way.)
+  const match = new RegExp(`(^|[^\\w-])(${pattern})(?![\\w-])`, "i").exec(text);
+  if (!match) return null;
+  const start = match.index + match[1].length;
+  return { start, end: start + match[2].length };
+}
+
+// The glossary words found in a lease text, first appearance of each,
+// in reading order. Where two overlap, the one that starts first wins.
+function glossaryMatches(text, glossary) {
+  const found = (glossary || [])
+    .map((entry) => ({ entry, ...firstMatch(text, entry.words) }))
+    .filter((match) => match.start !== undefined)
+    .sort((a, b) => a.start - b.start || b.end - a.end);
+  const kept = [];
+  for (const match of found) {
+    const last = kept[kept.length - 1];
+    if (!last || match.start >= last.end) kept.push(match);
+  }
+  return kept;
+}
+
+// Turns a lease text into text pieces and word buttons. Tapping a word
+// opens its meaning just below the line; tapping again closes it.
+function withGlossaryWords(text, glossary) {
+  const pieces = [];
+  let position = 0;
+  for (const { entry, start, end } of glossaryMatches(text, glossary)) {
+    pieces.push(text.slice(position, start));
+
+    const meaning = make("span", "term-meaning", entry.meaning);
+    meaning.id = `meaning-${++meaningCount}`;
+    meaning.hidden = true;
+
+    const button = make("button", "term", text.slice(start, end));
+    button.type = "button";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", meaning.id);
+    button.addEventListener("click", () => {
+      const opening = meaning.hidden;
+      meaning.hidden = !opening;
+      button.setAttribute("aria-expanded", String(opening));
+    });
+
+    pieces.push(button, meaning);
+    position = end;
+  }
+  pieces.push(text.slice(position));
+  return pieces;
+}
+
+// Gives each word meaning its own id, so its button can point to it.
+let meaningCount = 0;
 
 // Where each part sits on a clause. The "shows" list decides which parts
 // appear; this list decides where they go. The risk mark and the tag sit
@@ -257,7 +328,7 @@ function renderClause(clause, version, content) {
         article.append(row);
       }
     } else if (version.shows.includes(slot)) {
-      const part = clauseParts[slot](clause, content);
+      const part = clauseParts[slot](clause, content, version);
       if (part) article.append(part);
     }
   }
@@ -265,14 +336,16 @@ function renderClause(clause, version, content) {
 }
 
 // The notes at the top of a version that lists "governsNote": the lease text
-// governs, what "you" means, and how the risk ranks count.
-function renderVersionNotes(content) {
+// governs, what "you" means, and how the risk ranks count. When the lease
+// text has underlined glossary words, a last note says to tap them.
+function renderVersionNotes(content, hasGlossaryWords) {
   const notes = make("div", "version-notes");
   notes.append(
     make("p", "governs-note", content.page.governsSample),
     make("p", "", content.page.youMeans),
     make("p", "", content.tags.consequence.scale),
   );
+  if (hasGlossaryWords) notes.append(make("p", "glossary-hint", content.page.glossaryHint));
   return notes;
 }
 
@@ -302,7 +375,12 @@ function renderVersion(content, clauses, letter, number) {
   // One line saying what this version shows, from the version's "description".
   if (version.description) section.append(make("p", "version-description", version.description));
 
-  if (version.shows.includes("governsNote")) section.append(renderVersionNotes(content));
+  if (version.shows.includes("governsNote")) {
+    const hasGlossaryWords =
+      version.shows.includes("glossary") &&
+      clauses.some((clause) => clause.legalText && glossaryMatches(clause.legalText, content.glossary).length);
+    section.append(renderVersionNotes(content, hasGlossaryWords));
+  }
 
   const byRank = version.order === "rank";
   const list = make("div", byRank ? "clause-list card-list" : "clause-list");

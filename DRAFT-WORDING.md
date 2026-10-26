@@ -61,6 +61,8 @@ The "Clause & Effect" name at the top becomes the button, so there's no new visi
 
 ## 9c. Tap a word to see what it means
 
+Approved on 10/26 and copied into `content.json` (`page.glossaryHint` and `glossary`). Both are named in the `unverified` list there until you check them on the page.
+
 ### The hint shown above the lease text (`page.glossaryHint`)
 
 > Tap an underlined word to see what it means.
