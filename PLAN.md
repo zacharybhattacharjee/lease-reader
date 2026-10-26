@@ -162,7 +162,7 @@ Status: waiting for your answers to the questions below. No page code is written
 
 ### Step 9: Changes from class feedback (10/23) (planned, not built)
 
-Status: 9a, 9b and 9c are built and waiting for you to check them. The wording for 9d is drafted in `DRAFT-WORDING.md` and waiting for your review. This step comes before step 8, since you want these changes in before testing.
+Status: 9a to 9d are built and waiting for you to check them. 9e (translate) waits until after testing. This step comes before step 8, since you want these changes in before testing.
 
 **Decided on 10/26:**
 - No live AI. Claude drafts all the wording ahead of time, and you check it. The page stays a plain static site, and the lease never leaves the computer.

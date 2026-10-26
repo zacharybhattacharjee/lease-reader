@@ -349,6 +349,45 @@ function renderVersionNotes(content, hasGlossaryWords) {
   return notes;
 }
 
+// "What to do next" at the end of a version that lists "nextSteps": every
+// ask from the clauses shown, in the version's own order, in one list.
+// Returns nothing when no clause has an ask.
+function renderNextSteps(content, orderedClauses) {
+  const asks = [];
+  for (const clause of orderedClauses) {
+    const type = clause.typeInfo;
+    if (!type || !type.negotiable || !type.asks) continue;
+    for (const ask of type.asks) if (!asks.includes(ask)) asks.push(ask);
+  }
+  if (!asks.length) return null;
+
+  const page = content.page;
+  const box = make("section", "next-steps");
+  const heading = make("h3", "next-steps-title", page.nextStepsTitle);
+  heading.id = `next-steps-${++nextStepsCount}`;
+  box.setAttribute("aria-labelledby", heading.id);
+
+  const list = make("ul", "asks-list");
+  for (const ask of asks) list.append(make("li", "", ask));
+
+  // Prints only this box: the stylesheet hides everything else while
+  // the page has the "print-list" class.
+  const print = make("button", "button button-secondary print-button", page.printButton);
+  print.type = "button";
+  print.addEventListener("click", () => {
+    document.body.classList.add("print-list");
+    window.print();
+  });
+
+  box.append(heading, make("p", "next-steps-intro", page.nextStepsIntro), list, print);
+  return box;
+}
+
+// Gives each "What to do next" heading its own id, so its box can name it.
+let nextStepsCount = 0;
+
+window.addEventListener("afterprint", () => document.body.classList.remove("print-list"));
+
 function inLeaseOrder(clauses) {
   return [...clauses].sort((a, b) => a.leaseOrder - b.leaseOrder);
 }
@@ -383,11 +422,15 @@ function renderVersion(content, clauses, letter, number) {
   }
 
   const byRank = version.order === "rank";
+  const ordered = byRank ? inRankOrder(clauses) : inLeaseOrder(clauses);
   const list = make("div", byRank ? "clause-list card-list" : "clause-list");
-  for (const clause of byRank ? inRankOrder(clauses) : inLeaseOrder(clauses)) {
-    list.append(renderClause(clause, version, content));
-  }
+  for (const clause of ordered) list.append(renderClause(clause, version, content));
   section.append(list);
+
+  if (version.shows.includes("nextSteps")) {
+    const nextSteps = renderNextSteps(content, ordered);
+    if (nextSteps) section.append(nextSteps);
+  }
   return section;
 }
 

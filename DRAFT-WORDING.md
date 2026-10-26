@@ -121,6 +121,8 @@ Each entry has the words as the lease writes them, and a meaning. Only the first
 
 ## 9d. What to do next
 
+Approved on 10/26 and copied into `content.json`. The three fields are named in the `unverified` list there.
+
 A box at the end of Versions 2 and 3 that gathers every ask on the page into one list.
 
 | Field | Wording |

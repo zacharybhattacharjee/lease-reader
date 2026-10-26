@@ -12,7 +12,10 @@
     "versions.C.description",
     "page.homeLabel",
     "page.glossaryHint",
-    "glossary"
+    "glossary",
+    "page.nextStepsTitle",
+    "page.nextStepsIntro",
+    "page.printButton"
   ],
   "page": {
     "appName": "Clause & Effect",
@@ -28,6 +31,9 @@
     "showDetails": "Show the details",
     "hideDetails": "Hide the details",
     "glossaryHint": "Tap an underlined word to see what it means.",
+    "nextStepsTitle": "What to do next",
+    "nextStepsIntro": "Here is every ask on this page in one list. Before you sign, send it to the landlord in writing, and keep a copy.",
+    "printButton": "Print this list",
     "emptyExcerpt": "[Lease excerpt goes here]",
     "footer": "Prototype for a Northeastern University School of Law class. Not legal advice.",
     "uploadTitle": "Upload Your Lease",
@@ -231,7 +237,8 @@
         "asks",
         "consequenceRank",
         "governsNote",
-        "glossary"
+        "glossary",
+        "nextSteps"
       ]
     },
     "C": {
@@ -247,7 +254,8 @@
         "asks",
         "plainAndLegalTextOnTap",
         "governsNote",
-        "glossary"
+        "glossary",
+        "nextSteps"
       ]
     }
   }
