@@ -2,7 +2,7 @@
 
 Status: draft for Zachary to review. Nothing in this plan is built. The questions are at the end.
 
-Version 3 (10/26). This version uses the second workbook (with the Asks sheet), the updated `RESEARCH-BRIEF.md`, and your answers to my questions. Your answers replace any earlier ones and are recorded in "Decisions" below.
+Version 4 (10/26). This version uses the second workbook (with the Asks sheet), the updated `RESEARCH-BRIEF.md`, and both rounds of your answers, recorded in "Decisions" below. Your third workbook has split ask columns and a new approval rule. It hasn't reached me yet, so I'll check it when you send it.
 
 ## What the engine does
 
@@ -40,6 +40,32 @@ The engine never writes a sentence. It only chooses sentences from the library, 
    - I never see the Egleston lease. You run it yourself.
 10. **First batch:** the 13 clause types that already have versions in the workbook (see "Stage 1").
 11. **No separate ranks.** Tiers replace them, and you set them.
+
+**Second round (10/26):**
+
+12. **The dataset quotes stay in the workbook.** The license allows non-commercial sharing with credit. Wherever one appears on the page, it shows: "From Leivaditi, Rossi & Kanoulas (2020), CC BY-NC 4.0."
+13. **Under every proof example,** one line, stored once in `content.json`: "From a lease a company filed publicly. Larger tenants often get better terms, so this shows the wording exists, not that your landlord will agree."
+14. **The Warning phrases sheet now has two ask columns:** "Plain-language ask" and "Legal wording to propose".
+15. **A row can't be marked Approved until its tier is set.**
+16. **Layout, built this way in preview first.** You'll adjust it after you see it:
+    - **A flagged section** is one card:
+      - at the top, the plain sentence and the tier mark
+      - below that, the lease's own words
+      - then "What to ask", with the plain ask first
+      - then, collapsed by default, "Words to propose": the caution line, the legal wording, and the proof example
+      - last, "If they say no", when there's a fallback
+    - **An unsure section** is one card with both possible matches, and the line "This section could be either of these. Check the lease's own words."
+    - **Not-sorted sections** go in a separate group at the end, titled "Sections the tool couldn't sort", with glossary meanings shown in place.
+17. **What counts as a flag:**
+    - A version is a flag when it has a row on the Asks sheet, whatever its rating.
+    - "Best" versions show without a flag, marked "Good for you", so owners know what not to spend their asks on.
+    - Other versions show their sentence and tier, with no flag and no marker.
+18. **Tier marks use words, not numbers:**
+    - Tier 1: "Highest stakes."
+    - Tier 2: "Costs money."
+    - Tier 3: "Rules and paperwork."
+    - "Tier not set" sections go after tier 3 and before "not sorted", in preview only.
+19. **Mixed tiers.** A section goes in its most serious tier. Inside the card, its matched versions are listed most serious first.
 
 ## The rules
 
@@ -106,7 +132,11 @@ This is the chain from the brief, built from the Asks sheet:
 4. **Proof.** If the ask names a better version, the page shows that version's real example and source, so the owner sees the better wording exists in a real lease.
 5. **If they say no.** If there's a fallback version, the page shows it as "If they say no, ask for this instead."
 
-**A risky warning phrase with no version match** uses its "Ask for instead" column.
+**A risky warning phrase with no version match** uses its two ask columns on the Warning phrases sheet: "Plain-language ask" and "Legal wording to propose".
+
+**Under each proof example:** the shared proof line from decision 13. If the example comes from the research dataset, the credit line from decision 12 shows too.
+
+**"Good for you":** a matched "Best" version shows its sentence with that marker, and no ask.
 
 **Example:** an unlimited personal guaranty shows:
 - the guaranty-unlimited sentence, and its tier (or "Tier not set")
@@ -118,7 +148,8 @@ This is the chain from the brief, built from the Asks sheet:
 **Where this gets built:**
 - Version flags, asks, proof and fallbacks come in **stage 1**, since versions are matched then.
 - Warning-phrase swaps come in **stage 3**, with the warning phrases.
-- How the chain looks on the page is your call (question 4).
+- How the chain looks follows decision 16, in preview first.
+- "Words to propose" is a button that opens and closes, and tells screen readers whether it's open (`aria-expanded`), like the Version 3 card button today.
 
 ## What I checked in your files
 
@@ -140,11 +171,16 @@ This is the chain from the brief, built from the Asks sheet:
   
   I'll add matching rules for these. You don't need to change the workbook.
 
-### New problems
+### Problems found in the second workbook
 
-- **Dataset text is still in the workbook.** 15 "real example" cells on the Versions sheet are quotes from the research dataset, for example `utilities-no-liability` and `surrender-wear-and-tear`. If the workbook and `versions.json` go in the repository, those quotes go with them. Some are "proof" examples, so they'd also show on the public page (question 1).
-- **Proof from big companies.** Most proof examples are leases of large public companies. An owner might read "other leases do this" as "I can get this too". The page may need one line saying so (question 2).
-- **"Ask for instead" mixes two kinds of text.** Some cells are legal wording ("not be unreasonably withheld, conditioned, or delayed"). Others are plain asks ("Ask to remove the waiver."). The page needs to know which is which, to put legal wording under the shared line (question 3).
+Resolved by your second-round answers:
+- The 15 dataset quotes stay, with credit (decision 12).
+- Proof examples get a caution line (decision 13).
+- "Ask for instead" is split into two columns (decision 14). I'll check the new columns when the third workbook arrives.
+- Middle versions: anything with an Asks row is a flag (decision 17).
+
+Still open:
+
 - **Two wordings for one ask.** The `transfer-tenant-stays-liable` ask releases you "from all obligations arising after the date of the assignment". The "remain primarily liable" swap releases you with no date limit, which is broader. They should probably match.
 - **Legal wording to check.** You said this is the part to check most carefully. What I noticed:
   - **opex-full-share** proposes paying increases over "the Base Year". A lease with a full-share clause may not define a Base Year at all, so the wording may need a blank, such as "the calendar year [2027] (the "Base Year")".
@@ -154,7 +190,6 @@ This is the chain from the brief, built from the Asks sheet:
   - **deposit-top-up**'s wording is a fragment ("within [thirty (30)] days after written demand") rather than a full sentence. That's fine if the page labels it as replacement words for the deadline.
   - **Square-bracket style varies:** "[180]" in one place, "[ten (10)]" in others.
 - **A column no longer used.** The Clause types sheet still has an empty "What to ask for (Q3)" column. Since the Asks sheet replaces it, the converter will ignore it unless you say otherwise.
-- **Middle versions have no asks.** Every "Worst" version has an ask. "Middle" versions, such as `transfer-profit-sharing` and `repairs-landlord-self-help`, don't. The brief's chain starts from "a risky version", so I'll treat only "Worst" versions and risky warning phrases as flags unless you say otherwise (question 5).
 
 ## The research dataset
 
@@ -306,29 +341,47 @@ From the brief. I won't build any of these until you choose:
   - tiers in place of ranks
 
   I'll show you the new wording first.
-- **Today's 3 clauses and their risk marks** ("1 Highest risk") move to tiers. What the mark says for a tier is new wording (question 6).
+- **Today's 3 clauses and their risk marks** ("1 Highest risk") move to tier marks in words (decision 18).
+- **New page wording in `content.json`.** You wrote all of these yourself in your answers, so none of them needs a draft:
+  - the three tier names, and "Tier not set"
+  - "Good for you"
+  - "What to ask", "Words to propose" and "If they say no"
+  - the caution line above legal wording
+  - the proof line
+  - the dataset credit line
+  - the unsure line
+  - "Sections the tool couldn't sort"
+  - the shared missing-clause line
+  - "Draft", for preview mode
+- **A credit in the repository.** Since the dataset quotes go in the workbook and the library files, the repository also gets a short credit file. It names the authors, the DOI and the license link, and says the quotes are shortened excerpts. CC BY-NC asks you to say when material has been changed.
 - **Step 9:** 9c's tap-a-word feature is reused in stage 3, so building 9c first saves work.
 - **Step 8 (whole lease view):** the engine keeps where each line sits, so highlights can later cover every sorted section.
 
 ## Questions for you
 
-### Needed before stage 1
+### New, from your second-round answers
 
-1. **The 15 dataset quotes in the Versions sheet.** They'd go in the repository with the workbook, and the proof examples would show on the public page. Pick one:
-   - **(a)** Move them to `dataset-red-flags.xlsx`, and use them only for finding phrases. Proof then comes only from EDGAR leases. Suggestion: this one, since it keeps "dataset text stays off" true.
-   - **(b)** Keep them, with a credit line on the page and in the repo. CC BY-NC allows that for non-commercial use, but it breaks the rule in your brief.
-2. **A line next to proof examples?** For example: "From a real lease filed with the SEC. Larger businesses often get terms that smaller ones don't." It's new wording, so it would go through `DRAFT-WORDING.md` first.
-3. **Split "Ask for instead" into two columns,** one for legal wording and one for a plain ask? Otherwise the converter has to guess which is which, and it never guesses.
-4. **How the flag-to-ask chain looks in each version,** and how "unsure" and "not sorted" look. You said layout is your call. A rough sketch or a few words is enough.
-5. **Which versions count as flags:** "Worst" only, or "Middle" too? Middle versions have no asks yet.
-6. **What the tier mark says.** For example "Tier 1: could cost you the space or the business", or "Tier 1" alone. And what do sections with "Tier not set" do in tier order: go last?
-7. **A section that matches two versions with different tiers.** Suggestion: it's placed by its most serious tier, and both versions show their own tiers.
+1. **Which versions get the new card layout?**
+   - Version 1 must stay the lease as written, with no flags, since it's what you compare against. So the layout in decision 16 applies to Versions 2 and 3.
+   - Do both use the same card, with Version 2 in lease order and Version 3 in tier order?
+   - Or does only one of them change?
+   - You said to ask before changing how Version 3 shows tiers. This is that question.
+2. **"Ask before you sign" tag.** Today Versions 2 and 3 show a gold "Ask before you sign" tag on negotiable clauses. Does it become the flag marker on cards with an ask, next to "Good for you" on Best versions? Or is it replaced by the "What to ask" heading?
+3. **The proof line for dataset examples.** "From a lease a company filed publicly" fits the EDGAR leases. The research-dataset leases weren't necessarily filed by a company. Should dataset examples get a different first half, such as "From a real lease in a research dataset"? Or does the credit line alone cover them?
+4. **A tier from the version or from its clause type?** "A row can't be Approved until its tier is set": does a version count as having a tier when only its clause type has one? Suggestion: yes. A version uses its own tier if it has one, and otherwise its clause type's. The converter reports any Approved version with neither, and treats it as a draft.
+5. **The tier of an unsure card.** It shows two possible types, maybe with different tiers. Suggestion: place it by the more serious of the two, like decision 19.
+6. **A section with a flag and a "Good for you".** For example, a friendly cure period, then "provided, however" taking it back. Suggestion: the card is a flag, its versions are listed most serious first, and the "Good for you" version shows inside it with its marker.
 
-### Can wait
+### Still open from before
 
-8. **"Left blank" sentences** for empty form blanks. Add a column on the Versions sheet, or one shared line in `content.json`?
-9. **Should your 23 word meanings from step 9c go into the Glossary sheet,** so there's one glossary?
-10. **Test tool timing.** A basic test tool in stage 1 would record sorting before I tune anything. Or keep it all in stage 4?
-11. **The two outside files.** The page loads pdf.js from cdnjs and the fonts from Google. They never see the lease. Copy them into the repo so the page uses no outside sites at all?
-12. **The sample lease button.** Keep today's 3 sample clauses, or retire it once uploads work well?
-13. **The legal-wording notes above** (Base Year, the unamortized period, a capital-cost fallback, the estimate, the bracket style, and the two release wordings). Will you change them in the workbook, or should I list exact suggestions for you to paste?
+7. **"Left blank" sentences** for empty form blanks. Add a column on the Versions sheet, or one shared line in `content.json`?
+8. **Should your 23 word meanings from step 9c go into the Glossary sheet,** so there's one glossary?
+9. **Test tool timing.** A basic test tool in stage 1 would record sorting before I tune anything. Or keep it all in stage 4?
+10. **The two outside files.** The page loads pdf.js from cdnjs and the fonts from Google. They never see the lease. Copy them into the repo so the page uses no outside sites at all?
+11. **The sample lease button.** Keep today's 3 sample clauses, or retire it once uploads work well?
+12. **The legal-wording notes** in "What I checked" (Base Year, the unamortized period, a capital-cost fallback, the estimate, the bracket style, and the two release wordings). Will you change them in the workbook, or should I list exact suggestions for you to paste?
+13. **The 4 broken EDGAR links,** including Sensus, a proof example. Will you fix them, or should I list the working links?
+
+### Before stage 1 starts
+
+Please send the third workbook, the one with the split ask columns and the approval rule. Questions 1 and 2 decide how the cards fit into the versions, so I'd want those answered before building. The rest can wait.
