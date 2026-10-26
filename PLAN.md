@@ -224,5 +224,5 @@ Your notes asked for six things. I've sorted them by size, smallest first.
   3. Warning phrases and word meanings across the whole lease.
   4. A second lease form, checked against your hand-marked answer key.
   
-  Reading scanned PDFs waits. Step 9 comes first, so you can test.
+  Reading scanned PDFs waits. Step 9 comes first, so you can test. The full plan is in `ENGINE-PLAN.md`.
 - A view of the whole uploaded lease, with the key clauses highlighted on the real pages. Now planned as step 8.
